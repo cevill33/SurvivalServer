@@ -58,7 +58,7 @@ public class Pheonix {
         Bow1.arrwos.add(arrow14);
         Bow1.arrwos.add(arrow15);
         Bow1.arrwos.add(arrow16);
-        //Update 3
+        //Update 4
 
     }
 }
