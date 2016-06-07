@@ -1,0 +1,43 @@
+name: Survival
+version: 1.4
+author: cevill33
+main: me.survival.Main
+commands:
+
+  gs:
+  ride:
+     aliases: [horse]
+  askhextori:
+  answer:
+  sword:
+  stats:
+  ping:
+  heal:
+  chatclear:
+  clear:
+  spawn:
+  firework:
+  song:
+  r:
+  magic:
+  radio:
+     aliases: [musik]
+  enchanting:
+     aliases: [verzaubern]
+  msg:
+     aliases: [m,tell]
+  hilfe:
+     aliases: [help]
+  regeln:
+     aliases: [rules]
+  tutorial:
+  gamemode:
+     aliases: [gm]
+  workbench:
+     aliases: [wb]
+  enderchest:
+     aliases: [ec]
+  day:
+  shop:
+  bewerben:
+  sethome:

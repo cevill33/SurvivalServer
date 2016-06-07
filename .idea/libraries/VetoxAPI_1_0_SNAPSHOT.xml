@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="VetoxAPI-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../sever 1/plugins/VetoxAPI-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
