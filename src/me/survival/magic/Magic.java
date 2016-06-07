@@ -19,8 +19,8 @@ public enum Magic {
 	COBWEB1(MagicType.NORMAL, "Spinne I", 750, Material.WEB, 0, Arrays.asList("§7Schleudert Spinnweben aus deinem Zauberstab!", "§3Mana: §735"), "me.survival.magic.magics.CobWeb1", 6),
 	MEDIC(MagicType.NORMAL, "Medic", 650, Material.BEACON, 0, Arrays.asList("§7Heilt die Spieler in", "§7einem Umkreis von 3 Blöcken", "§7für 10 Sekunden!", "§3Mana: §780"), "me.survival.magic.magics.Medic", 7),
 	THOR1(MagicType.NORMAL, "Thor I", 550, Material.IRON_AXE, 0, Arrays.asList("§7Alle Spieler im Radius von", "§73 Blöcken werden" ,"§7wegkatapultiert.", "§3Mana: §740"), "me.survival.magic.magics.Thor1", 8),
-	AKBAR(MagicType.ELITE, "Rage QUIT!", 450, Material.TNT, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie dich selbst in die" ,"§7luft jagen.(GEHT NOCH NICHT)", "§3Mana: §730"), "me.survival.magic.magics.Akbar", 9);
-
+	AKBAR(MagicType.ELITE, "Rage QUIT!", 450, Material.TNT, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie dich selbst in die" ,"§7luft jagen.(GEHT NOCH NICHT)", "§3Mana: §730"), "me.survival.magic.magics.Akbar", 9),
+	PHOENIX(MagicType.ELITE, "Phönix Regen", 450, Material.ARROW, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie dich selbst in die" ,"§7luft jagen.(GEHT NOCH NICHT)", "§3Mana: §750"), "me.survival.magic.magics.Pheonix", 10);
 	
 	
 	private MagicType type;
