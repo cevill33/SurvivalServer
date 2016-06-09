@@ -20,9 +20,12 @@ public enum Magic {
 	MEDIC(MagicType.NORMAL, "Medic", 650, Material.BEACON, 0, Arrays.asList("§7Heilt die Spieler in", "§7einem Umkreis von 3 Blöcken", "§7für 10 Sekunden!", "§3Mana: §780"), "me.survival.magic.magics.Medic", 7),
 	THOR1(MagicType.NORMAL, "Thor I", 550, Material.IRON_AXE, 0, Arrays.asList("§7Alle Spieler im Radius von", "§73 Blöcken werden" ,"§7wegkatapultiert.", "§3Mana: §740"), "me.survival.magic.magics.Thor1", 8),
 	AKBAR(MagicType.ELITE, "Rage QUIT!", 450, Material.TNT, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie dich selbst in die" ,"§7luft jagen.(GEHT NOCH NICHT)", "§3Mana: §730"), "me.survival.magic.magics.Akbar", 9),
-	PHOENIX(MagicType.ELITE, "Phönix Regen", 450, Material.ARROW, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie dich selbst in die" ,"§7luft jagen.(GEHT NOCH NICHT)", "§3Mana: §750"), "me.survival.magic.magics.Pheonix", 10);
-	
-	
+	PHOENIX(MagicType.TITAN, "Phönix Regen", 450, Material.ARROW, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie dich selbst in die" ,"§7luft jagen.(GEHT NOCH NICHT)", "§3Mana: §750"), "me.survival.magic.magics.Pheonix", 10),
+	ROCKET(MagicType.GOD, "Flying Rocket", 435, Material.FIREWORK, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie fliegst du mit" ,"§7einer Rakete als dein Bekleiter","§7in die Luft!", "§3Mana: §735"), "me.survival.magic.magics.FlyingRocket", 11),
+	FREEZE(MagicType.ELITE, "Freeze", 445, Material.PACKED_ICE, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie machst du alle Spieler " ,"§7im Radius von 3 Blöcken","§7fast bewegungsunfähig", "§3Mana: §745"), "me.survival.magic.magics.Freeze", 12),
+	DELFIN(MagicType.ELITE, "Delfin", 435, Material.WATER_LILY, 0, Arrays.asList("§7Du wirst bei dieser", "§7Magie Kannst du dich" ,"§7schneller über das Wasser bewegen!", "§3Mana: §735"), "me.survival.magic.magics.Delfin", 13);
+
+
 	private MagicType type;
 	private String name;
 	private double cost;

@@ -18,10 +18,10 @@ public class Pheonix {
     public static int cooldown = 50;
 
     public static void fire(Player p) {
-        MagicManager.startLoadinMana(p);
-        //Hier Kommt der Code:
+
         Block block = p.getTargetBlock((Set<Material>) null, 100);
         //Radius 1
+        MagicManager.startLoadinMana(p);
         Arrow arrow = (Arrow) p.getWorld().spawnEntity(block.getLocation().add(0,10,0), EntityType.ARROW);
         Arrow arrow2 = (Arrow) p.getWorld().spawnEntity(block.getLocation().add(0,10,2), EntityType.ARROW);
         Arrow arrow3 = (Arrow) p.getWorld().spawnEntity(block.getLocation().add(0,10,-2), EntityType.ARROW);
@@ -58,7 +58,6 @@ public class Pheonix {
         Bow1.arrwos.add(arrow14);
         Bow1.arrwos.add(arrow15);
         Bow1.arrwos.add(arrow16);
-        //Update 4
 
     }
 }
