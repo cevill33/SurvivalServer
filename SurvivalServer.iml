@@ -7,26 +7,25 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" scope="PROVIDED">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/Spigot_1.8.8R1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../spigot.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/Spigot_1.8.8R1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../spigot.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" scope="PROVIDED">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/plugins/NoteBlockAPI-1.1.0 (1).jar!/" />
+          <root url="jar://$MODULE_DIR$/../../VetoxAPI.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="VetoxAPI-1.0-SNAPSHOT" level="project" />
   </component>
 </module>
