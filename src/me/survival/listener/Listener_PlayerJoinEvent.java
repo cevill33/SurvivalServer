@@ -1,5 +1,6 @@
 package me.survival.listener;
 
+import me.survival.methods.Kit;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Bukkit;
@@ -49,29 +50,10 @@ public class Listener_PlayerJoinEvent implements Listener {
 		if(!p.hasPlayedBefore()) {
 			p.playSound(p.getLocation(), Sound.LEVEL_UP, 40, 2);
 			Bukkit.broadcastMessage(Main.prefix + "§3Der Spieler§a " + p.getName() + " §3ist neu auf dem Server!");
-			ItemStack spitzhacke = new ItemBuilder(Material.STONE_PICKAXE).build();
-			ItemStack food = new ItemStack(Material.COOKED_FISH, 64);
-			ItemStack food2 = new ItemStack(Material.COOKED_FISH, 64);
-			ItemStack helm = new ItemBuilder(Material.LEATHER_HELMET).setLeatherColor(Color.AQUA).build();
-			ItemStack harnisch = new ItemBuilder(Material.LEATHER_CHESTPLATE).setLeatherColor(Color.AQUA).build();
-			ItemStack hose = new ItemBuilder(Material.LEATHER_LEGGINGS).setLeatherColor(Color.AQUA).build();
-			ItemStack schuhe = new ItemBuilder(Material.LEATHER_BOOTS).setLeatherColor(Color.AQUA).build();
-			
-			
-			
-			p.getInventory().setHelmet(helm);
-			p.getInventory().setChestplate(harnisch);
-			p.getInventory().setLeggings(hose);
-			p.getInventory().setBoots(schuhe);
-			p.getInventory().addItem(Sword.getSword(p));
-			p.getInventory().addItem(MagicManager.stick);
-			p.getInventory().addItem(spitzhacke);
-			p.getInventory().addItem(food);
-			p.getInventory().addItem(food2);
+			Kit.standartKit(p);
 			p.setLevel(1);
 			p.setExp(0.99f);
 			p.teleport(new Location(Bukkit.getWorld("Clan"), 0.5, 6, 0.5));
-			
 			return;
 		}
 		

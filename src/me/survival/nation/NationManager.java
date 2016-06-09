@@ -13,6 +13,7 @@ public class NationManager {
 
     public static void setPlayerInNation(Player p, Nation nation) {
 
+
     }
 
 
