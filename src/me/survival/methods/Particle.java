@@ -2,6 +2,7 @@ package me.survival.methods;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -33,10 +34,11 @@ public class Particle {
 
     public void sendAll(){
         PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(this.particletype, this.longdistance, (float)this.location.getX(), (float)this.location.getY(), (float)this.location.getZ(), this.offsetx, this.offsety, this.offsetz, this.speed, this.amount, 0);
+        World w = location.getWorld();
 
         for(Player player : Bukkit.getOnlinePlayers()){
+            if(player.getWorld().equals(w))
             ((CraftPlayer)player).getHandle().playerConnection.sendPacket(packet);
-
         }
     }
 

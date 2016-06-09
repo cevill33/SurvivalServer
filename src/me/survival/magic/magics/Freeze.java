@@ -2,6 +2,7 @@ package me.survival.magic.magics;
 
 import me.survival.magic.MagicManager;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -19,29 +20,14 @@ public class Freeze {
         //Hier Kommt der Code:
         int x = p.getLocation().getBlockX();
         int z = p.getLocation().getBlockZ();
-        for(Player o : Bukkit.getOnlinePlayers()){
-            if(o==p){
-                return;
-            }
-            int Blockx = o.getLocation().getBlockX();
-            int Blockz = o.getLocation().getBlockZ();
-            if(((Blockx == x) && (Blockz == z)) || ((Blockx == x+1) && (Blockz == z+1))
-                    || ((Blockx == x+1) && (Blockz == z-1)) || ((Blockx == x-1) && (Blockz == z+1)
-                    || ((Blockx == x+1) && (Blockz == z))) || ((Blockx == x-1) && (Blockz == z))
-                    || ((Blockx == x) && (Blockz == z+1)) || ((Blockx == x) && (Blockz == z-1))
-                    || ((Blockx == x-1) && (Blockz == z-1))|| ((Blockx == x+2) && (Blockz == z+2))
-                    || ((Blockx == x+2) && (Blockz == z-2)) || ((Blockx == x-2) && (Blockz == z+2)
-                    || ((Blockx == x+2) && (Blockz == z))) || ((Blockx == x-2) && (Blockz == z))
-                    || ((Blockx == x) && (Blockz == z+2)) || ((Blockx == x) && (Blockz == z-2))
-                    || ((Blockx == x-2) && (Blockz == z-2))
-                    || ((Blockx == x+3) && (Blockz == z-3)) || ((Blockx == x-3) && (Blockz == z+3)
-                    || ((Blockx == x+3) && (Blockz == z))) || ((Blockx == x-3) && (Blockz == z))
-                    || ((Blockx == x) && (Blockz == z+3)) || ((Blockx == x) && (Blockz == z-3))
-                    || ((Blockx == x-3) && (Blockz == z-3))) {
+        for(Entity o : p.getNearbyEntities(4, 4, 4)){
+            if(o instanceof Player) {
+                Player player = (Player) o;
                 PotionEffect e = new PotionEffect(PotionEffectType.SLOW, 200, 2);
-                o.addPotionEffect(e);
+                player.addPotionEffect(e);
             }
         }
-
     }
+
 }
+

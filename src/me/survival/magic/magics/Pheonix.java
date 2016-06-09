@@ -19,6 +19,7 @@ public class Pheonix {
 
     public static void fire(Player p) {
 
+        //TODO: Cancell Damage
         Block block = p.getTargetBlock((Set<Material>) null, 100);
         //Radius 1
         MagicManager.startLoadinMana(p);
