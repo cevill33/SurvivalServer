@@ -2,17 +2,14 @@ package me.survival.magic.magics;
 
 import me.survival.Main;
 import me.survival.magic.MagicManager;
-import me.survival.methods.Particle;
+import me.survival.objects.Particle;
+import me.vetoxapi.objects.AntiCheat;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by mariusk on 09.06.2016.
@@ -24,9 +21,10 @@ public class Delfin {
     public static void fire(Player p) {
         MagicManager.startLoadinMana(p);
         final int ID[] = new int[1];
+        AntiCheat.addFlying(p, "delfin");
 
         ID[0] = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.main, new Runnable() {
-            int step = 10;
+            int step = 20;
 
             @Override
             public void run() {
@@ -47,6 +45,7 @@ public class Delfin {
 
                 if(step == 20) {
                     Bukkit.getScheduler().cancelTask(ID[0]);
+                    AntiCheat.removeFlying(p, "delfin");
                 }
 
             }

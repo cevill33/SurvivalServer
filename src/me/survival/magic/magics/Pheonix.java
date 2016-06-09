@@ -8,6 +8,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +18,9 @@ import java.util.Set;
 public class Pheonix {
 
     public static int cooldown = 50;
-
+    public static List<Arrow> arrows = new ArrayList<>();
+    
+    
     public static void fire(Player p) {
 
         //TODO: Cancell Damage
@@ -43,22 +47,29 @@ public class Pheonix {
         Arrow arrow15 = (Arrow) p.getWorld().spawnEntity(block.getLocation().add(2,10,-2), EntityType.ARROW);
         Arrow arrow16 = (Arrow) p.getWorld().spawnEntity(block.getLocation().add(-2,10,2), EntityType.ARROW);
 
-        Bow1.arrwos.add(arrow);
-        Bow1.arrwos.add(arrow2);
-        Bow1.arrwos.add(arrow3);
-        Bow1.arrwos.add(arrow4);
-        Bow1.arrwos.add(arrow5);
-        Bow1.arrwos.add(arrow6);
-        Bow1.arrwos.add(arrow7);
-        Bow1.arrwos.add(arrow8);
-        Bow1.arrwos.add(arrow9);
-        Bow1.arrwos.add(arrow10);
-        Bow1.arrwos.add(arrow11);
-        Bow1.arrwos.add(arrow12);
-        Bow1.arrwos.add(arrow13);
-        Bow1.arrwos.add(arrow14);
-        Bow1.arrwos.add(arrow15);
-        Bow1.arrwos.add(arrow16);
+
+
+        arrows.add(arrow);
+        arrows.add(arrow2);
+        arrows.add(arrow3);
+        arrows.add(arrow4);
+        arrows.add(arrow5);
+        arrows.add(arrow6);
+        arrows.add(arrow7);
+        arrows.add(arrow8);
+        arrows.add(arrow9);
+        arrows.add(arrow10);
+        arrows.add(arrow11);
+        arrows.add(arrow12);
+        arrows.add(arrow13);
+        arrows.add(arrow14);
+        arrows.add(arrow15);
+        arrows.add(arrow16);
+
+        for(Arrow a : arrows) {
+            a.setCritical(true);
+            a.setFireTicks(50);
+        }
 
     }
 }

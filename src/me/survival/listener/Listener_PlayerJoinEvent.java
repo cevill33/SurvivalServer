@@ -46,7 +46,7 @@ public class Listener_PlayerJoinEvent implements Listener {
 		title.send(p);
 		
 		
-		//Noch nie davor gespielt:
+		//Noch nie davor gespielt...:
 		if(!p.hasPlayedBefore()) {
 			p.playSound(p.getLocation(), Sound.LEVEL_UP, 40, 2);
 			Bukkit.broadcastMessage(Main.prefix + "§3Der Spieler§a " + p.getName() + " §3ist neu auf dem Server!");
@@ -61,7 +61,7 @@ public class Listener_PlayerJoinEvent implements Listener {
 		DBVetoxPlayer dV = new DBVetoxPlayer(id.toString());
 		VetoxPlayer vP = VetoxPlayer.stats.get(id);
 		p.teleport(dV.getLocation("lastlocation"));
-		
+
 		
 		if(p.hasPermission("vetox.boost.50")) {
 			vP.setBoost(vP.getBoost() + 0.5);

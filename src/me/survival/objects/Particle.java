@@ -1,4 +1,4 @@
-package me.survival.methods;
+package me.survival.objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

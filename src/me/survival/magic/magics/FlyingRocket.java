@@ -1,6 +1,7 @@
 package me.survival.magic.magics;
 
 import me.survival.magic.MagicManager;
+import me.vetoxapi.objects.AntiCheat;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.entity.Firework;
@@ -17,7 +18,7 @@ public class FlyingRocket {
     public static void fire(Player p) {
         MagicManager.startLoadinMana(p);
 
-        //TODO DallDamage aus!
+        //TODO FallDamage aus!
         //Hier Kommt der Code:
         Firework firework = p.getWorld().spawn(p.getLocation(), Firework.class);
         FireworkEffect effect = FireworkEffect.builder()
@@ -33,5 +34,6 @@ public class FlyingRocket {
         meta.setPower(3);
         firework.setFireworkMeta(meta);
         firework.setPassenger(p);
+        AntiCheat.addFlying(p, "rocket", 20*7);
     }
 }

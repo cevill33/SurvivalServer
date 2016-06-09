@@ -1,6 +1,8 @@
 package me.survival.listener;
 
+import me.survival.magic.magics.Pheonix;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,15 +23,19 @@ public class Listener_ProjectileHitEvent implements Listener {
 				arrow.remove();
 				return;
 			}
+
+			if(Pheonix.arrows.contains(arrow)) {
+				arrow.remove();
+			}
 			
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
 				
 				@Override
 				public void run() {
 					arrow.remove();
-					
+
 				}
-			},20*6);
+			},20*3);
 			
 			
 			
