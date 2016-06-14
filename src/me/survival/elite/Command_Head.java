@@ -72,5 +72,41 @@ public class  Command_Head implements CommandExecutor {
         }
         return false;
     }
+
+
+    public static void onKlick(Player p, Material m) {
+        Inventory inv = p.getInventory();
+        Material ma = inv.getItem(39).getType();
+        if(m!=Material.AIR || m!=Material.BARRIER){
+            if(ma!=Material.LEATHER_HELMET||ma!=Material.CHAINMAIL_HELMET||ma!=Material.GOLD_HELMET||ma!=Material.IRON_HELMET||ma!=Material.DIAMOND_HELMET) {
+                p.getInventory().setItem(39, new ItemBuilder(m).setDiplayname("§6Head").build());
+                p.sendMessage(Main.prefix + "Du hast nun einen Block auf!");
+            }else{
+                p.sendMessage(Main.prefix + "§cBitte setze erst deinen Helm ab!");
+            }
+        }
+        if(m.equals(Material.BARRIER)){
+            if(ma!=Material.LEATHER_HELMET||ma!=Material.CHAINMAIL_HELMET||ma!=Material.GOLD_HELMET||ma!=Material.IRON_HELMET||ma!=Material.DIAMOND_HELMET||ma!=Material.AIR) {
+                p.getInventory().setItem(39, new ItemStack(Material.AIR));
+                p.sendMessage(Main.prefix + "Dein Block wurde erfolgreich entfernt! ");
+            }else{
+                p.sendMessage(Main.prefix + "Du hast keinen Block auf deinem Kopf!");
+            }
+        }
+    }
+
+    public static boolean onHeadClick(Player p, ItemStack clickmaterial) {
+        ItemStack realhead = p.getInventory().getItem(39);
+        if(realhead.equals(clickmaterial)) {
+            Material ma = realhead.getType();
+            if(ma != null || ma != Material.AIR || ma!=Material.LEATHER_HELMET||ma!=Material.CHAINMAIL_HELMET||ma!=Material.GOLD_HELMET||ma!=Material.IRON_HELMET||ma!=Material.DIAMOND_HELMET) {
+                return false;
+            }
+            p.sendMessage(Main.prefix + "§7Du hast deinen Kopf entfernt.");
+            p.getInventory().getItem(39).setType(Material.AIR);
+            return true;
+        }
+        return false;
+    }
 }
 

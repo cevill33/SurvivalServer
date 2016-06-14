@@ -1,6 +1,7 @@
 package me.survival.listener;
 
 import me.survival.api.ItemBuilder;
+import me.survival.elite.Command_Head;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -36,30 +38,9 @@ public class Listener_InventoryClickEvent implements Listener {
 		ItemStack current = e.getCurrentItem();
 		if(current.getType() == Material.AIR) return;
 		//Zum Registrieren eines Inventars immer mit §a beginnen!
+
 		if(name.startsWith("§a")) {
-			//Head
-			if(name.equals("§aHeads")){
-				e.setCancelled(true);
-				Material m = current.getType();
-				Inventory inv = p.getInventory();
-				Material ma = inv.getItem(39).getType();
-				if(m!=Material.AIR || m!=Material.BARRIER){
-					if(ma!=Material.LEATHER_HELMET||ma!=Material.CHAINMAIL_HELMET||ma!=Material.GOLD_HELMET||ma!=Material.IRON_HELMET||ma!=Material.DIAMOND_HELMET) {
-						p.getInventory().setItem(39, new ItemBuilder(m).setDiplayname("§6Head").build());
-						p.sendMessage(Main.prefix + "Du hast nun einen Head auf!");
-					}else{
-						p.sendMessage(Main.prefix + "§cBitte setze erst deinen Helm ab!");
-					}
-				}
-				if(m.equals(Material.BARRIER)){
-					if(ma!=Material.LEATHER_HELMET||ma!=Material.CHAINMAIL_HELMET||ma!=Material.GOLD_HELMET||ma!=Material.IRON_HELMET||ma!=Material.DIAMOND_HELMET||ma!=Material.AIR) {
-						p.getInventory().setItem(39, new ItemStack(Material.AIR));
-						p.sendMessage(Main.prefix + "Dein Head wurde erfolgreich entfernt! ");
-					}else{
-						p.sendMessage(Main.prefix + "Du hast keinen Block auf deinem Kopf!");
-					}
-				}
-			}
+
 			//Sword
 			if(name.equals("§a§5Sword")) {
 				e.setCancelled(true);
@@ -192,9 +173,21 @@ public class Listener_InventoryClickEvent implements Listener {
 					return;
 				}
 			}
+
+			//Head
+			//TODO genauere abfrage ob der spieler einen helm aufhat.
+			if(name.equals("§aHeads")){
+				Command_Head.onKlick(p, current.getType());
+				e.setCancelled(true);
+			}
 			
 			
 			return;
+		}
+
+		//Click on Head
+		if(e.getInventory() instanceof PlayerInventory) {
+			e.setCancelled(Command_Head.onHeadClick(p, e.getCurrentItem()));
 		}
 		
 
@@ -317,15 +310,15 @@ public class Listener_InventoryClickEvent implements Listener {
 			
 				if(p.getGameMode().equals(GameMode.SURVIVAL)) {
 				p.sendMessage(Sword.prefix + "§cDu kannst die Position deines Schwertes nur mit §7/sword slot <slot> §cändern.");
-				e.setCancelled(true);
-			}
-		}
-		  
-		}	
-		
-		
-		
+		e.setCancelled(true);
 	}
+}
+
+}
+
+
+
+		}
 	
 	
 	

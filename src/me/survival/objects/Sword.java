@@ -32,12 +32,15 @@ public class Sword {
 
 	public static ItemStack getSword(Player p) {
 		UUID id = p.getUniqueId();
-		int lvl = (Integer) new DBVetoxPlayer(id.toString()).getObject("swordlevel");
-		ItemStack sword = Swords.getByLevel(lvl).getItemStack(p.getName(), Arrays.asList("§7Level: §f" + lvl));
-		if(lvl == 0) {
-			sword = Swords.getByLevel(lvl).getItemStack(p.getName(), Arrays.asList("§7Level: §f" + lvl, "§7Du kannst dein Schwert verbessern!", "§7Gebe dazu /sword upgrade ein!"));
+		if(new DBVetoxPlayer(p.getUniqueId().toString()).getDocument() != null) {
+			int lvl = (Integer) new DBVetoxPlayer(id.toString()).getObject("swordlevel");
+			ItemStack sword = Swords.getByLevel(lvl).getItemStack(p.getName(), Arrays.asList("§7Level: §f" + lvl));
+			if(lvl == 0) {
+				sword = Swords.getByLevel(lvl).getItemStack(p.getName(), Arrays.asList("§7Level: §f" + lvl, "§7Du kannst dein Schwert verbessern!", "§7Gebe dazu /sword upgrade ein!"));
+			}
+			return sword;
 		}
-		return sword;
+		return Swords.getByLevel(0).getItemStack(p.getName(), Arrays.asList("§7Level: §f1", "§8Du kannst dein Schwert am", "§fSpawn neben dem Schmied verbessern!"));
 	}
 
 	public static void openInventory(Player p) {
