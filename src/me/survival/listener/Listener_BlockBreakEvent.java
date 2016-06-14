@@ -46,10 +46,14 @@ public class Listener_BlockBreakEvent implements Listener {
 			} 
 			e.setCancelled(true);
 		}
-		
-		if(b.getType().equals(Material.REDSTONE_ORE)) {
-			b.getDrops().clear();
+
+
+		if(!e.isCancelled()) {
+			if(b.getType().equals(Material.REDSTONE_ORE)) {
+				b.getDrops().clear();
+			}
 		}
+
 	}
 
 }
