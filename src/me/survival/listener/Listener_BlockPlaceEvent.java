@@ -51,8 +51,8 @@ public class Listener_BlockPlaceEvent implements Listener {
 		}
 		if(!e.isCancelled()){
 			Block block = e.getBlock();
-			if(block.getLocation().subtract(0,1,0).getBlock().breakNaturally()){
-				block.getLocation().subtract(0,1,0).getBlock().setType(Material.AIR);
+			if(block.getLocation().subtract(0,1,0).getBlock().getType().equals(Material.WORKBENCH)){
+				block.getLocation().subtract(0,1,0).getBlock().breakNaturally();
 				block.getWorld().dropItem(block.getLocation(), new ItemBuilder(Material.WOOD,2,(short)0).build());
 			}
 		}

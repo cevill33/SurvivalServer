@@ -10,18 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/Spigot_1.8.8R1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/Spigot_1.8.8R1.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/plugins/VetoxAPI-1.0-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../VetoxAPI.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -30,7 +19,18 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../sever 1/plugins/NoteBlockAPI-1.1.0 (1).jar!/" />
+          <root url="jar://$MODULE_DIR$/../../spigot.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../spigot.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../NoteBlockAPI-1.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
