@@ -40,7 +40,6 @@ public class BetterEnchant {
 		new BetterEnchant("Stärke",Arrays.asList("§7Erhöht den Pfeilschaden!"), Enchantment.ARROW_DAMAGE, 24, 6, Material.BOW);
 		new BetterEnchant("Schlag",Arrays.asList("§7Wenn der Pfeil der abgeschossen wird,","§7einen Spieler trifft bekommt er Rückstoß"), Enchantment.ARROW_KNOCKBACK, 26, 2, Material.BOW);
 		new BetterEnchant("Unendlichkeit",Arrays.asList("§7Damit kann dein Bogen unendlich", "§7Pfeile schießen(Muss mindestens 1 dabei haben)"), Enchantment.ARROW_INFINITE, 25, 1, Material.BOW);
-
 		
 
 

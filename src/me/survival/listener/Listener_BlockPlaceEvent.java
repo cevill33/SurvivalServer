@@ -1,6 +1,8 @@
 package me.survival.listener;
 
 import me.survival.Main;
+import me.survival.api.ItemBuilder;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -47,12 +49,13 @@ public class Listener_BlockPlaceEvent implements Listener {
 			} 
 			e.setCancelled(true);
 		}
-		
-		
-		
-		
-		
-		
-	}
+		if(!e.isCancelled()){
+			Block block = e.getBlock();
+			if(block.getLocation().subtract(0,1,0).getBlock().breakNaturally()){
+				block.getLocation().subtract(0,1,0).getBlock().setType(Material.AIR);
+				block.getWorld().dropItem(block.getLocation(), new ItemBuilder(Material.WOOD,2,(short)0).build());
+			}
+		}
 
+	}
 }

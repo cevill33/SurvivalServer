@@ -27,11 +27,6 @@ import me.survival.shop.VillagerShop;
 
 public class Listener_InventoryClickEvent implements Listener {
 
-	
-	
-
-	
-
 
 	@EventHandler
 	public static void onKlick(InventoryClickEvent e) {
@@ -43,7 +38,7 @@ public class Listener_InventoryClickEvent implements Listener {
 		//Zum Registrieren eines Inventars immer mit §a beginnen!
 		if(name.startsWith("§a")) {
 			//Head
-			if(name.equals("§aHeads")){//TODO genauere abfrage ob der spieler einen helm aufhat.
+			if(name.equals("§aHeads")){
 				e.setCancelled(true);
 				Material m = current.getType();
 				Inventory inv = p.getInventory();

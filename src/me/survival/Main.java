@@ -6,6 +6,7 @@ package me.survival;
 
 
 import me.survival.commands.*;
+import me.survival.elite.*;
 import me.survival.listener.*;
 import me.survival.methods.*;
 import org.bukkit.Bukkit;
@@ -17,11 +18,6 @@ import chunkgs.Command_Gs;
 import me.survival.api.ListenerBundle;
 import me.survival.api.ListenerManager;
 import me.survival.api.Listener_InteractAPI;
-import me.survival.elite.Command_Day;
-import me.survival.elite.Command_EnderChest;
-import me.survival.elite.Command_Firework;
-import me.survival.elite.Command_Song;
-import me.survival.elite.Command_WorkBench;
 import me.survival.objects.Ask;
 import me.survival.objects.Broadcast;
 import me.survival.objects.Sword;
@@ -129,6 +125,7 @@ public class Main extends JavaPlugin {
 
 
 	private void registerCommands() {
+		getCommand("head").setExecutor(new Command_Head());
 		getCommand("ride").setExecutor(new Command_Horse(this));
 		getCommand("askhextori").setExecutor(new Command_Ask());
 		getCommand("answer").setExecutor(new Command_Answer());
