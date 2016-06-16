@@ -53,7 +53,7 @@ public class Listener_PlayerJoinEvent implements Listener {
 			Kit.standartKit(p);
 			p.setLevel(1);
 			p.setExp(0.99f);
-			p.teleport(new Location(Bukkit.getWorld("Clan"), 0.5, 6, 0.5));
+			p.teleport(new Location(Bukkit.getWorld("Clan"), -293, 5, 464));
 			return;
 		}
 		
@@ -74,7 +74,7 @@ public class Listener_PlayerJoinEvent implements Listener {
 		p.setLevel(level);
 		
 		if((Integer) dV.getObject("maintutorial") == 0) {
-			p.teleport(new Location(Bukkit.getWorld("Clan"), 0.5, 6, 0.5));
+			p.teleport(new Location(Bukkit.getWorld("Clan"), -293, 5, 464));
 		}
 
 		if(level == 1) { p.sendMessage(Main.prefix + "§5Wenn du dich nicht auskennst: §a/hilfe§5!"); }

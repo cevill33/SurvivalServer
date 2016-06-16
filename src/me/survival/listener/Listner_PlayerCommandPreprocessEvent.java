@@ -13,7 +13,7 @@ public class Listner_PlayerCommandPreprocessEvent implements Listener {
 	public void onCommand(PlayerCommandPreprocessEvent e) {
 		String cmd = e.getMessage().toLowerCase();
 		if(cmd.startsWith("/pl") || cmd.startsWith("/?") || cmd.startsWith("/buk")) {
-			Title title = new Title("", "§4Alles auf dem Server ist selbst programmiert!");
+			Title title = new Title("", "§4Das meißten Plugins sind selbst programmiert!");
 			title.send(e.getPlayer());
 			e.setCancelled(true);
 		}

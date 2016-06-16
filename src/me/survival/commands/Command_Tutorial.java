@@ -1,6 +1,7 @@
 package me.survival.commands;
 
 import me.survival.Main;
+import me.survival.npc.MessageThread;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,6 +16,12 @@ public class Command_Tutorial implements CommandExecutor {
 		Player p = (Player) cs;
 		if(args.length == 0) {
 			Tutorial.startTutorial(p);
+			return true;
+		}
+
+		if(args[0].equalsIgnoreCase("test")) {
+			p.sendMessage("GO");
+			new MessageThread("Bürger", "Hallo mein name ist lalala", p).run();
 			return true;
 		}
 		

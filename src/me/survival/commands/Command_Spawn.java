@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import me.vetoxapi.mongodb.DBVetoxPlayer;
+import me.vetoxapi.mongodb.QuestPlayer;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -29,7 +30,7 @@ public class Command_Spawn implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender cs, Command arg1, String arg2, String[] args) {
 		Player p = (Player) cs;
-		if((Integer) new DBVetoxPlayer(p.getUniqueId().toString()).getObject("maintutorial") == 0) {
+		if((Integer) new DBVetoxPlayer(p.getUniqueId().toString()).getObject("maintutorial") == 0 || new QuestPlayer(p.getUniqueId().toString()).getDocument() != null) {
 			p.sendMessage(Main.prefix + "§cDu musst dir zuerst das Tutorial anhören!");
 			return true;
 		}

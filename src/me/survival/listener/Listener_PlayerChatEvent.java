@@ -75,17 +75,11 @@ public class Listener_PlayerChatEvent implements Listener {
 			p.sendMessage(Main.prefix + "§4Du darfst noch nicht schreiben:");
 			p.sendMessage("");
 			int tut = new DBVetoxPlayer(p.getUniqueId().toString()).getDocument().getInteger("maintutorial");
-			if(tut == 0) {
-				p.sendMessage("  §7Du musst dir zuerst das Tutorial anhören.");
-				p.sendMessage("  §7Gebe dafür §a/tutorial §7ein!");
-				p.sendMessage("");
-				return;
-			}
-
-			p.sendMessage("  §7Du kannst erst ab Level 2 schreiben.");
-			p.sendMessage("  §7Bei Fragen mache einfach: §3?(Frage)§7.");
-			p.sendMessage("  §7Bei privaten Fragen kannst du aber auch §3/msg <Spieler> <text> §7 benutzen!");
+			p.sendMessage("  §7Du musst zuertst die erste Quest.");
+			p.sendMessage("  §7absolvieren. Viel Glück ;)");
 			p.sendMessage("");
+			return;
+			}
 		}
 		
 		
@@ -109,4 +103,4 @@ public class Listener_PlayerChatEvent implements Listener {
 		
 	}
 
-}
+

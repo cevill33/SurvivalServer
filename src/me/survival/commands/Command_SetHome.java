@@ -22,8 +22,15 @@ public class Command_SetHome implements CommandExecutor {
 		Player p = (Player) cs;
 		
 		if(args.length == 0) {
+
+			if(!p.getWorld().getName().equals("Mainworld")) {
+				p.sendMessage(Main.prefix + "§cDu kannst dein Home nur in der Hauptwelt Elbros setzten.");
+				return true;
+			}
+
+
 			if(cool.contains(p.getName())) {
-				p.sendMessage(Main.prefix + "§cDu kannst dein Home nur alle 100 Sekunden setzen!");
+				p.sendMessage(Main.prefix + "§cDu kannst dein Home nur alle 30 Sekunden setzen!");
 				return true;
 			}
 			cool.add(p.getName());
@@ -36,7 +43,7 @@ public class Command_SetHome implements CommandExecutor {
 					cool.remove(p.getName());
 					
 				}
-			},20* 100);
+			},20* 30);
 
 			new DBVetoxPlayer(p.getUniqueId().toString()).setLocation("home", p.getLocation());
 			p.sendMessage(Main.prefix + "§7Du hast dein Home erfolgreich gesetzt!");
