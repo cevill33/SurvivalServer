@@ -20,7 +20,7 @@ public class  Command_Head implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         if (p.hasPermission("vetox.head")) {
-            Inventory inv = p.getPlayer().getServer().createInventory(null,44,"§aHeads");
+            Inventory inv = p.getServer().createInventory(null,44,"§aHeads");
             inv.setItem(0, new ItemBuilder(Material.DIAMOND_ORE).setDiplayname("§6Head").build());
             inv.setItem(1, new ItemBuilder(Material.EMERALD_ORE).setDiplayname("§6Head").build());
             inv.setItem(2, new ItemBuilder(Material.LAPIS_ORE).setDiplayname("§6Head").build());
@@ -49,7 +49,7 @@ public class  Command_Head implements CommandExecutor {
             //inv.setItem(18, new ItemBuilder(Material.GLASS,1,(short)5).setDiplayname("§6Head").build());
             //inv.setItem(18, new ItemBuilder(Material.GLASS,1,(short)4).setDiplayname("§6Head").build());
             //inv.setItem(18, new ItemBuilder(Material.GLASS,1,(short)3).setDiplayname("§6Head").build());
-            //LINE 4 
+            //LINE 4
             inv.setItem(19, new ItemBuilder(Material.WORKBENCH).setDiplayname("§6Head").build());
             inv.setItem(20, new ItemBuilder(Material.FURNACE).setDiplayname("§6Head").build());
             //LINE 5
