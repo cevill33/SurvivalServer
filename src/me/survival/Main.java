@@ -35,6 +35,8 @@ import worldmanager.FarmworldEuropia;
 import worldmanager.Mainworld;
 import worldmanager.WorldManager;
 
+import java.util.HashMap;
+
 public class Main extends JavaPlugin {
 	
 	//public static MySQL mysql;
@@ -110,7 +112,9 @@ public class Main extends JavaPlugin {
 		ItemClear.onEnable();
 		VetoxRecipes.disableRecipes(this);
 		AFK.registerAFK(this);
-   
+
+		NickNamer.Health = new HashMap<>();
+		NickNamer.loc = new HashMap<>();
 	}
 	
 
