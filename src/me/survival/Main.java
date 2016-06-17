@@ -112,9 +112,6 @@ public class Main extends JavaPlugin {
 		ItemClear.onEnable();
 		VetoxRecipes.disableRecipes(this);
 		AFK.registerAFK(this);
-
-		NickNamer.Health = new HashMap<>();
-		NickNamer.loc = new HashMap<>();
 	}
 	
 

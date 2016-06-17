@@ -24,16 +24,16 @@ import java.util.HashMap;
  */
 public class NickNamer {
 
-    public static HashMap<CraftPlayer,Location> loc;
-    public static HashMap<CraftPlayer,Double> Health;
+    public static HashMap<CraftPlayer,Location> loc = new HashMap<>();
+    public static HashMap<CraftPlayer,Double> health = new HashMap<>();
 
-    public static void changeSkin(CraftPlayer cp, String UUID){
+    public static void changeSkin(CraftPlayer cp, String playername){
         GameProfile skingp = cp.getProfile();
 
         try {
-            skingp = GameProfileBuilder.fetch(UUIDFetcher.getUUID(UUID));
+            skingp = GameProfileBuilder.fetch(UUIDFetcher.getUUID(playername));
         }catch(IOException e){
-            cp.sendMessage(Main.prefix + "§cSyntax: Der Skin konnte nicht geladen werden!");
+            cp.sendMessage(Main.prefix + "§4Fehler:§7 Der Skin konnte nicht geladen werden!");
             e.printStackTrace();
             return;
         }
@@ -43,7 +43,7 @@ public class NickNamer {
         cp.getProfile().getProperties().putAll("textures",props);
 
         loc.put(cp,cp.getLocation().add(0,1,0));
-        Health.put(cp,cp.getHealth());
+        health.put(cp,cp.getHealth());
 
         PacketPlayOutEntityDestroy destroy = new PacketPlayOutEntityDestroy(cp.getEntityId());
         sendPackage(destroy);
@@ -56,7 +56,7 @@ public class NickNamer {
             @Override
             public void run(){
                 cp.spigot().respawn();
-                cp.setHealth(Health.get(cp));
+                cp.setHealth(health.get(cp));
                 cp.teleport(loc.get(cp));
                 PacketPlayOutPlayerInfo tabadd = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, cp.getHandle());
                 sendPackage(tabadd);

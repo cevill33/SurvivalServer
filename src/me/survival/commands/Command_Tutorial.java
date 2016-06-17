@@ -21,7 +21,7 @@ public class Command_Tutorial implements CommandExecutor {
 
 		if(args[0].equalsIgnoreCase("test")) {
 			p.sendMessage("GO");
-			new MessageThread("Bürger", "Hallo mein name ist lalala", p).run();
+			new MessageThread("Bürger", "Hallo ich bin der Bürgermeißter. Ich lebe hier seit ein paar Jahren. Es ist ein kleiner Test also denke nicht dass dies was ich sage wichtig ist. Ich grüße meinen Feind Gomme!", p).run();
 			return true;
 		}
 		

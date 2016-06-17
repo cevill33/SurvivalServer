@@ -25,19 +25,19 @@ public class MessageThread  implements Runnable{
 
         String t = "";
 
-        for(int i = -1; i <= text.length; i++) {
+        for(int i = 1; i < text.length; i++) {
             t = t + text[i];
             sendPlaceHolder(p);
-            p.sendMessage("§9" + npcname + "§8§l: " + t);
+            p.sendMessage("§9" + npcname + "§8§l:§f " + t);
 
 
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        thread.stop();
+        return;
     }
 
     public void sendPlaceHolder(Player p) {
