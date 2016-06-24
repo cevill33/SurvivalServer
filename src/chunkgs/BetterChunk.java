@@ -34,17 +34,19 @@ public class BetterChunk {
 		
 		File file = new File("plugins/gs/chunks/" + x + ":" + z + ":" + world + ".yml");
 		YamlConfiguration cfg = new YamlConfiguration().loadConfiguration(file);
-		cfg.set("world", world);
-		cfg.set("x", x);
-		cfg.set("z", z);
-		cfg.set("owner", ownerID);
-		List<String> friend = new ArrayList<>();
-		friend.add("testfreund");
-		cfg.set("friends", friend);
-		try {
-			cfg.save(file);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(!file.exists()) {
+			cfg.set("world", world);
+			cfg.set("x", x);
+			cfg.set("z", z);
+			cfg.set("owner", ownerID);
+			List<String> friend = new ArrayList<>();
+			friend.add("testfreund");
+			cfg.set("friends", friend);
+			try {
+				cfg.save(file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		Chunk c = new Location(Bukkit.getWorld(world), x*16, 10, z*16).getChunk();

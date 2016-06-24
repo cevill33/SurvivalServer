@@ -138,40 +138,30 @@ public class ChunkManager {
 	
 	
 	public static Integer getPrice(int chunks) {
-		
 		if(chunks > 8) {
 			return chunks*250+400;
 		}
-		
-		if(chunks == 1) {
-			return 250;
+
+		switch (chunks) {
+			case 1:
+				return 250;
+			case 2:
+				return 400;
+			case 3:
+				return 650;
+			case 4:
+				return 850;
+			case 5:
+				return 950;
+			case 6:
+				return 1050;
+			case 7:
+				return 1550;
+			case 8:
+				return 1850;
+			default:
+				return chunks*250+400;
 		}
-		if(chunks == 2) {
-			return 400;
-		}
-		if(chunks == 3) {
-			return 650;
-		}
-		if(chunks == 4) {
-			return 850;
-		}
-		if(chunks == 5) {
-			return 950;
-		}
-		if(chunks == 6) {
-			return 1050;
-		}
-		if(chunks == 7) {
-			return 1550;
-		}
-		if(chunks == 8) {
-			return 1850;
-		}
-		
-		return chunks*250+400;
-		
-		
-		
 	}
 	
 

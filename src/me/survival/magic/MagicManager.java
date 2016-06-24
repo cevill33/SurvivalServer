@@ -76,7 +76,7 @@ public class MagicManager {
 				short subid = (short) magic.getSubid();
 				inv.setItem(magic.getId(), new ItemBuilder(magic.getMat(), 1, subid).setDiplayname(magic.getName()).setLoreInArrayList(dec).build());
 			} else {
-				inv.setItem(magic.getId(), new ItemBuilder(Material.DEAD_BUSH).setDiplayname(magic.getName()).setLoreInArrayList(dec).build());
+				inv.setItem(magic.getSlot(), new ItemBuilder(Material.DEAD_BUSH).setDiplayname(magic.getName()).setLoreInArrayList(dec).build());
 			}
 			
 		}

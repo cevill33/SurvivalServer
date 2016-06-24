@@ -132,6 +132,7 @@ public class Main extends JavaPlugin {
 		getCommand("answer").setExecutor(new Command_Answer());
 		getCommand("sword").setExecutor(new Command_Sword());
 		getCommand("stats").setExecutor(new Command_Stats());
+
 		getCommand("ping").setExecutor(new Command_Ping());
 		getCommand("gs").setExecutor(new Command_Gs(this));
 		getCommand("chatclear").setExecutor(new Command_CC());
