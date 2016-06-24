@@ -98,7 +98,7 @@ public class Listener_InventoryClickEvent implements Listener {
 			//NickNamer
 			if(name.equals("§aNickNamer")){
 				e.setCancelled(true);
-				NickNamer.onClick(p,current);
+				NickNamer.onClick(p,current, e.getRawSlot());
 			}
 			//Shop
 			if(name.startsWith("§a§lShop§7: ")) {

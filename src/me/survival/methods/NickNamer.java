@@ -6,6 +6,7 @@ import me.survival.Main;
 import me.survival.api.GameProfileBuilder;
 import me.survival.api.UUIDFetcher;
 import me.survival.commands.Command_Nick;
+import me.survival.objects.Nick;
 import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
 import net.minecraft.server.v1_8_R3.PacketPlayOutNamedEntitySpawn;
@@ -35,7 +36,7 @@ public class NickNamer {
     public static HashMap<CraftPlayer,Location> loc = new HashMap<>();
     public static HashMap<CraftPlayer,Double> health = new HashMap<>();
 
-    public static void change(CraftPlayer cp, String playerskin){
+    public static void change(CraftPlayer cp, String playerskin, String playername){
         GameProfile skingp = cp.getProfile();
 
         try {
@@ -76,7 +77,7 @@ public class NickNamer {
                 }
             }
         }.runTaskLater(Main.main,2);
-        cp.getPlayer().setPlayerListName(playerskin);
+        cp.getPlayer().setPlayerListName(playername);
 
     }
     public static void sendPackage(Packet packet){
@@ -84,15 +85,16 @@ public class NickNamer {
             ((CraftPlayer)all).getHandle().playerConnection.sendPacket(packet);
         }
     }
-    public static void onClick(Player p,ItemStack i){
+    public static void onClick(Player p, ItemStack i, int row){
         if(i.getType().equals(Material.SKULL_ITEM)){
             if(Command_Nick.cooldownnick.contains(p.getName())){
                 p.sendMessage(Main.prefix + "§7Du kannst dich nur alle 20 Sekunden Nicken!");
                 return;
             }
-            SkullMeta cm = (SkullMeta) i.getItemMeta();
-            change((CraftPlayer)p,cm.getOwner());
-            p.sendMessage(Main.prefix + "§7Die Spieler sehen dich nun als §f" + cm.getOwner());
+            Nick n = Nick.nicks.get(row);
+            if(n == null) return;
+            change((CraftPlayer)p, n.getPlayerskin(), n.getPlayername());
+            p.sendMessage(Main.prefix + "§7Die Spieler sehen dich nun als §f" + n.getPlayername());
             Command_Nick.cooldownnick.add(p.getName());
             Bukkit.getScheduler().runTaskLater(Main.main, new Runnable() {
                 @Override
@@ -102,7 +104,7 @@ public class NickNamer {
             },20*60*20);
         }
         if(i.getType().equals(Material.BARRIER)){
-            change((CraftPlayer)p,p.getName());
+            change((CraftPlayer)p,p.getName(), p.getName());
             p.sendMessage(Main.prefix + "Alle Spieler sehen dich wieder so wie du bist!");
         }
     }
