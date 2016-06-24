@@ -26,13 +26,13 @@ public class Nick {
     }
 
     public static void registerNicks() {
-        new Nick("sade1212", "xXPvPPlayerXx");
-        new Nick("Fox", "FireFox306");
-        new Nick("Mzilla", "WulfPlayer");
-        new Nick("Snake", "Phyton");
-        new Nick("TheStabbyBunny", "BabyXXL");
-        new Nick("Snipex01", "zGreeiden");
-        new Nick("vexx21322", "IchBinEinMonster");
-        new Nick("R2_D2_2002", "R2_D2_2002");
+        nicks.add(new Nick("sade1212", "xXPvPPlayerXx"));
+        nicks.add(new Nick("Fox", "FireFox306"));
+        nicks.add(new Nick("Mzilla", "WulfPlayer"));
+        nicks.add(new Nick("Snake", "Phyton"));
+        nicks.add(new Nick("TheStabbyBunny", "BabyXXL"));
+        nicks.add(new Nick("Snipex01", "zGreeiden"));
+        nicks.add(new Nick("vexx21322", "IchBinEinMonster"));
+        nicks.add(new Nick("R2_D2_2002", "R2_D2_2002"));
     }
 }
