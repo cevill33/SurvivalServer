@@ -2,6 +2,7 @@ package me.survival.listener;
 
 import me.survival.api.ItemBuilder;
 import me.survival.elite.Command_Head;
+import me.survival.methods.NickNamer;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -94,7 +95,10 @@ public class Listener_InventoryClickEvent implements Listener {
 				}
 				
 			}
-			
+			//NickNamer
+			if(name.equals("§a§aNickNamer")){
+				NickNamer.onClick(p,current);
+			}
 			//Shop
 			if(name.startsWith("§a§lShop§7: ")) {
 				e.setCancelled(true);

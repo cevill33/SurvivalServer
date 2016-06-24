@@ -26,6 +26,13 @@ public class Nick {
     }
 
     public static void registerNicks() {
-        new Nick("sade1212", "xXPvPXx");
+        new Nick("sade1212", "xXPvPPlayerXx");
+        new Nick("Fox", "FireFox306");
+        new Nick("Mzilla", "WulfPlayer");
+        new Nick("Snake", "Phyton");
+        new Nick("TheStabbyBunny", "BabyXXL");
+        new Nick("Snipex01", "zGreeiden");
+        new Nick("vexx21322", "IchBinEinMonster");
+        new Nick("R2_D2_2002", "R2_D2_2002");
     }
 }

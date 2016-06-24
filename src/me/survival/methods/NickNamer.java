@@ -11,8 +11,12 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutNamedEntitySpawn;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
@@ -72,6 +76,13 @@ public class NickNamer {
     public static void sendPackage(Packet packet){
         for(Player all : Bukkit.getOnlinePlayers()){
             ((CraftPlayer)all).getHandle().playerConnection.sendPacket(packet);
+        }
+    }
+    public static void onClick(Player p,ItemStack i){
+        if(i.getType().equals(Material.SKULL_ITEM)){
+            SkullMeta cm = (SkullMeta) i.getItemMeta();
+            changeSkin((CraftPlayer)p,cm.getOwner());
+            p.sendMessage(Main.prefix + "Die Spieler sehen dich nun als " + cm.getOwner());
         }
     }
 }

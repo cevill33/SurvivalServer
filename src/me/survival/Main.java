@@ -156,6 +156,7 @@ public class Main extends JavaPlugin {
 		getCommand("bewerben").setExecutor(new Command_Bewerben());
 		getCommand("sethome").setExecutor(new Command_SetHome());
 		getCommand("liquidclean").setExecutor(new Command_LiquidClean());
+		getCommand("nick").setExecutor(new Command_Nick());
 	}
 	
 

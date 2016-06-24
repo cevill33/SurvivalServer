@@ -21,6 +21,7 @@ commands:
   head:
   r:
   magic:
+  Nick:
   radio:
      aliases: [musik]
   enchanting:

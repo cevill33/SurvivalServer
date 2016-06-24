@@ -20,9 +20,9 @@ public class Command_Nick implements CommandExecutor {
 
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {//TODO Command Testen
         Player p = (Player)sender;
-        Inventory inv = p.getServer().createInventory(null,9,"§aNickNamer");
+        Inventory inv = p.getServer().createInventory(null,18,"§aNickNamer");
 
         for(Nick nick : Nick.nicks) {
             ItemStack head = new ItemStack(Material.SKULL_ITEM, 1 , (short) 3);
