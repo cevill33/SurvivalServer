@@ -35,11 +35,11 @@ public class NickNamer {
     public static HashMap<CraftPlayer,Location> loc = new HashMap<>();
     public static HashMap<CraftPlayer,Double> health = new HashMap<>();
 
-    public static void change(CraftPlayer cp, String playername){
+    public static void change(CraftPlayer cp, String playerskin){
         GameProfile skingp = cp.getProfile();
 
         try {
-            skingp = GameProfileBuilder.fetch(UUIDFetcher.getUUID(playername));
+            skingp = GameProfileBuilder.fetch(UUIDFetcher.getUUID(playerskin));
         }catch(IOException e){
             cp.sendMessage(Main.prefix + "§4Fehler:§7 Der Skin konnte nicht geladen werden!");
             e.printStackTrace();
@@ -76,6 +76,7 @@ public class NickNamer {
                 }
             }
         }.runTaskLater(Main.main,2);
+        cp.getPlayer().setPlayerListName(playerskin);
 
     }
     public static void sendPackage(Packet packet){

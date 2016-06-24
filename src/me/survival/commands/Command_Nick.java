@@ -40,7 +40,7 @@ public class Command_Nick implements CommandExecutor {
             head.setItemMeta(cm);
             inv.addItem(head);
         }
-        inv.setItem(36,new ItemBuilder(Material.BARRIER).setDiplayname("§cReset Skin").build());
+        inv.setItem(35,new ItemBuilder(Material.BARRIER).setDiplayname("§4Skin zurücksetzten!").build());
 
         p.openInventory(inv);
         return false;
