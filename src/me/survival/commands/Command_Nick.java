@@ -32,7 +32,7 @@ public class Command_Nick implements CommandExecutor {
             inv.addItem(head);
         }
 
-        
+
 
         p.openInventory(inv);
         return false;
