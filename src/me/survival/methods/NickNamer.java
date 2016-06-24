@@ -20,14 +20,17 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by mariusk on 16.06.2016.
  */
 public class NickNamer {
 
+    public static List<String> changeing = new ArrayList<>();
     public static HashMap<CraftPlayer,Location> loc = new HashMap<>();
     public static HashMap<CraftPlayer,Double> health = new HashMap<>();
 

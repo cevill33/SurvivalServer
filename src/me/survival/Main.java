@@ -9,6 +9,7 @@ import me.survival.commands.*;
 import me.survival.elite.*;
 import me.survival.listener.*;
 import me.survival.methods.*;
+import me.survival.objects.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -18,10 +19,6 @@ import chunkgs.Command_Gs;
 import me.survival.api.ListenerBundle;
 import me.survival.api.ListenerManager;
 import me.survival.api.Listener_InteractAPI;
-import me.survival.objects.Ask;
-import me.survival.objects.Broadcast;
-import me.survival.objects.Sword;
-import me.survival.objects.TravelBallon;
 import me.survival.shop.VillagerShop;
 import monsterworld.Monsterworld;
 import monsterworld.RegionLvl1;
@@ -112,6 +109,7 @@ public class Main extends JavaPlugin {
 		ItemClear.onEnable();
 		VetoxRecipes.disableRecipes(this);
 		AFK.registerAFK(this);
+		Nick.registerNicks();
 	}
 	
 

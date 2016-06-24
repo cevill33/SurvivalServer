@@ -25,14 +25,14 @@ public class Command_Stats implements CommandExecutor {
 		Player p = (Player) cs;
 		
 		if(args.length == 0) {
-			sendStats(p);
+			sendStats(p, p);
 			return true;
 		}
 		
 		if(args.length == 1) {
 			Player t = Bukkit.getPlayerExact(args[0]);
 			if(t != null) {
-				sendStats(t);
+				sendStats(p, t);
 				return true;
 			} else {
 				p.sendMessage(Main.prefix + "§cDer Spieler ist nicht online!");
@@ -46,20 +46,20 @@ public class Command_Stats implements CommandExecutor {
 
 
 
-	public void sendStats(Player p) {
+	public void sendStats(Player getter, Player p) {
 		UUID id = p.getUniqueId();
 		String UUID = id.toString();
 		VetoxPlayer vP = VetoxPlayer.stats.get(id);
 		double coins = vP.getCoins();
-		p.sendMessage(Main.prefix + "§3Stats von " + p.getName() + ":");
-		p.sendMessage("   §8- §3Coins:§7 " + MoneyManager.round(coins));
-		p.sendMessage("   §8- §3Level:§7 " + vP.getLvl());
-		p.sendMessage("   §8- §3Exp:§7 " + round(vP.getExp()) + "/" + Level.getLevel(vP.getLvl()).getXp());
-		p.sendMessage("   §8- §3Spielzeit: §7" + vP.getHours() + "Stunden " + vP.getMinutes() + "Minuten");
-		p.sendMessage("   §8- §3Kills: §7" + vP.getKills());
-		p.sendMessage("   §8- §3EXP- Bonus: §a§l+ §7" + vP.getBoost() * 100 + "%");
+		getter.sendMessage(Main.prefix + "§3Stats von " + p.getName() + ":");
+		getter.sendMessage("   §8- §3Coins:§7 " + MoneyManager.round(coins));
+		getter.sendMessage("   §8- §3Level:§7 " + vP.getLvl());
+		getter.sendMessage("   §8- §3Exp:§7 " + round(vP.getExp()) + "/" + Level.getLevel(vP.getLvl()).getXp());
+		getter.sendMessage("   §8- §3Spielzeit: §7" + vP.getHours() + "Stunden " + vP.getMinutes() + "Minuten");
+		getter.sendMessage("   §8- §3Kills: §7" + vP.getKills());
+		getter.sendMessage("   §8- §3EXP- Bonus: §a§l+ §7" + vP.getBoost() * 100 + "%");
 		int rangpunkte =  500*vP.getLvl() + vP.getHours()*50 + vP.getMinutes() + vP.getKills()*5 + new Double(coins).intValue()*2;
-		p.sendMessage("   §8- §3RangPunkte: §7" + rangpunkte);
+		getter.sendMessage("   §8- §3RangPunkte: §7" + rangpunkte);
 		if(!cooldown.contains(p.getUniqueId())) {
 			new DBVetoxPlayer(p.getUniqueId().toString()).setObject("rangpoints", rangpunkte);
 			cooldown.add(p.getUniqueId());

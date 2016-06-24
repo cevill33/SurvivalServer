@@ -25,6 +25,7 @@ public class Command_Nick implements CommandExecutor {
         Inventory inv = p.getServer().createInventory(null,18,"§aNickNamer");
 
         for(Nick nick : Nick.nicks) {
+            System.out.println(nick.getPlayername());
             ItemStack head = new ItemStack(Material.SKULL_ITEM, 1 , (short) 3);
             SkullMeta cm = (SkullMeta) head.getItemMeta();
             cm.setOwner(nick.getPlayerskin());
