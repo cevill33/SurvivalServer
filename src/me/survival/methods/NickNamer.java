@@ -5,6 +5,7 @@ import com.mojang.authlib.properties.Property;
 import me.survival.Main;
 import me.survival.api.GameProfileBuilder;
 import me.survival.api.UUIDFetcher;
+import me.survival.commands.Command_Nick;
 import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
 import net.minecraft.server.v1_8_R3.PacketPlayOutNamedEntitySpawn;
@@ -34,7 +35,7 @@ public class NickNamer {
     public static HashMap<CraftPlayer,Location> loc = new HashMap<>();
     public static HashMap<CraftPlayer,Double> health = new HashMap<>();
 
-    public static void changeSkin(CraftPlayer cp, String playername){
+    public static void change(CraftPlayer cp, String playername){
         GameProfile skingp = cp.getProfile();
 
         try {
@@ -56,6 +57,7 @@ public class NickNamer {
         sendPackage(destroy);
         PacketPlayOutPlayerInfo tabremove = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, cp.getHandle());
         sendPackage(tabremove);
+        NickNamer.changeing.add(cp.getName());
         cp.setHealth(0);
 
         new BukkitRunnable(){
@@ -83,9 +85,24 @@ public class NickNamer {
     }
     public static void onClick(Player p,ItemStack i){
         if(i.getType().equals(Material.SKULL_ITEM)){
+            if(Command_Nick.cooldownnick.contains(p.getName())){
+                p.sendMessage(Main.prefix + "§7Du kannst dich nur alle 20 Sekunden Nicken!");
+                return;
+            }
             SkullMeta cm = (SkullMeta) i.getItemMeta();
-            changeSkin((CraftPlayer)p,cm.getOwner());
-            p.sendMessage(Main.prefix + "Die Spieler sehen dich nun als " + cm.getOwner());
+            change((CraftPlayer)p,cm.getOwner());
+            p.sendMessage(Main.prefix + "§7Die Spieler sehen dich nun als §f" + cm.getOwner());
+            Command_Nick.cooldownnick.add(p.getName());
+            Bukkit.getScheduler().runTaskLater(Main.main, new Runnable() {
+                @Override
+                public void run() {
+                    Command_Nick.cooldownnick.remove(p.getName());
+                }
+            },20*60*20);
+        }
+        if(i.getType().equals(Material.BARRIER)){
+            change((CraftPlayer)p,p.getName());
+            p.sendMessage(Main.prefix + "Alle Spieler sehen dich wieder so wie du bist!");
         }
     }
 }
