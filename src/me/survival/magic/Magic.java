@@ -23,7 +23,8 @@ public enum Magic {
 	PHOENIX(MagicType.TITAN, "Phönix Regen", 450, Material.ARROW, 0, Arrays.asList("§7Ein Pfeilregen wird", "§7herabfallen.", "§3Mana: §750"), "me.survival.magic.magics.Pheonix", 10, 10),
 	ROCKET(MagicType.GOD, "Flying Rocket", 435, Material.FIREWORK, 0, Arrays.asList("§7Mit dieser", "§7Magie fliegst du mit" ,"§7einer Rakete als dein Begleiter","§7in die Luft!", "§3Mana: §735"), "me.survival.magic.magics.FlyingRocket", 11, 11),
 	FREEZE(MagicType.ELITE, "Freeze", 445, Material.PACKED_ICE, 0, Arrays.asList("§7Bei dieser", "§7Magie machst du alle Spieler " ,"§7im Radius von 3 Blöcken","§7fast bewegungsunfähig", "§3Mana: §745"), "me.survival.magic.magics.Freeze", 12, 12),
-	DELFIN(MagicType.ELITE, "Delfin", 435, Material.WATER_LILY, 0, Arrays.asList("§7Du wirst mit der", "§7Magie dich schneller" ,"§7über das Wasser bewegen!", "§3Mana: §735"), "me.survival.magic.magics.Delfin", 13, 13);
+	DELFIN(MagicType.ELITE, "Delfin", 435, Material.WATER_LILY, 0, Arrays.asList("§7Du wirst mit der", "§7Magie dich schneller" ,"§7über das Wasser bewegen!", "§3Mana: §735"), "me.survival.magic.magics.Delfin", 13, 13),
+	WITHERSKULL(MagicType.ELITE, "Witherskull", 435, Material.SKULL_ITEM, 3, Arrays.asList("§7Du wirst mit der", "§7Magie einen" ,"§7Witherskull schießen!", "§3Mana: §760"), "me.survival.magic.magics.Witherskull", 13, 13);
 
 
 	private MagicType type;
