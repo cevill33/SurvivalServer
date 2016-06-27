@@ -10,9 +10,8 @@ import java.util.List;
 public enum Nation {
 
 
-
-    N1("", Arrays.asList("")),
-    N2("", Arrays.asList(""));
+    N1("Aincrad", Arrays.asList("")),
+    N2("Trivia", Arrays.asList("Die Nation Trivia ","hat die fähichkeit","schneller an verschiedene ","Orte reisen"));
 
     private String name;
     private List<String> desc;
@@ -29,4 +28,5 @@ public enum Nation {
     public List<String> getDesc() {
         return desc;
     }
+
 }

@@ -33,6 +33,5 @@ public class Nick {
         nicks.add(new Nick("TheStabbyBunny", "BabyXXL"));
         nicks.add(new Nick("Snipex01", "zGreeiden"));
         nicks.add(new Nick("vexx21322", "IchBinEinMonster"));
-        nicks.add(new Nick("R2_D2_2002", "R2_D2_2002"));
     }
 }
