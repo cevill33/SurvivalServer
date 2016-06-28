@@ -23,6 +23,7 @@ public class Listener_WheatProtect implements Listener {
 	    if ((event.getEntityType() != EntityType.PLAYER) && (event.getBlock().getType() == Material.SOIL))
 	      event.setCancelled(true);
 	  }
+
 	
 	
 	

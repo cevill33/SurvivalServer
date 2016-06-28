@@ -2,6 +2,7 @@ package me.survival.listener;
 
 import me.survival.Main;
 import me.survival.api.WorldManager;
+import me.survival.nation.Nation;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -23,8 +24,10 @@ public class Listener_PlayerInteractEvent implements Listener {
 		Player p = e.getPlayer();
 		String id = p.getUniqueId().toString();
 		Block b = e.getClickedBlock();
-		
-		
+
+		if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+			Nation.nationextraevent(p);
+		}
 		if(e.getClickedBlock() != null) {
 			
 //			if(b.getType().equals(Material.ANVIL)) {

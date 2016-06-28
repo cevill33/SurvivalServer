@@ -2,9 +2,9 @@ package me.survival.nation;
 
 import me.survival.Main;
 import me.survival.api.ItemBuilder;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 
 /**
@@ -12,15 +12,16 @@ import org.bukkit.inventory.Inventory;
  */
 public class NationManager {
 
-    public static boolean isPlayerInNation(Player p) {
+    public static boolean isPlayerInNation(Player p,Nation nation) {
         return false;
     }
 
     public static void setPlayerInNation(Player p, Nation nation) {
 
     }
+
     public static void openCooseInventory(Player p){
-        if(isPlayerInNation(p)){
+        if(isPlayerInNation(p,Nation.N1) || isPlayerInNation(p,Nation.N2)){
             p.sendMessage(Main.prefix + "§7Du bist bereits in einer Nation!");
             return;
         }
@@ -32,8 +33,5 @@ public class NationManager {
 
         p.openInventory(inv);
     }
-    
-
-
 
 }
