@@ -17,7 +17,7 @@ public class LocationReport {
     public LocationReport(Location loc, String reason){
         location = loc;
         grund = reason;
-        locationreports.add(new LocationReport(loc,reason));//TODO geht das auch mit this?
+        locationreports.add(this);
     }
 
     public static Location getLocation(LocationReport lr){
