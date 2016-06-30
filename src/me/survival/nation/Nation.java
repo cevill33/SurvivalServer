@@ -43,15 +43,18 @@ public enum Nation {
 
     public static HashMap<Player,Integer> visi = new HashMap<>();
 
-    /*public static void nationextraevent(Player p,Block b) {
+    @Deprecated
+    public static void nationextraevent(Player p,Block b) {
         if (p.isSneaking()) {
+
             if (NationManager.isPlayerInNation(p,N1)) {
-                if(b.getType() == Material.CROPS && b.getData() == 7){
+                if(b.getType() == Material.CROPS){
                     b.setType(Material.CROPS);
                     b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.WHEAT));
-                    b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.SEEDS));
+                    b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.CROPS));
                 }
             }
+
             if (NationManager.isPlayerInNation(p,N2)) {
                 if(visi.get(p)==0) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 3));
@@ -67,7 +70,8 @@ public enum Nation {
                     }, 20, 20);
                 }
             }
+
         }
-    }*/
+    }
 
 }

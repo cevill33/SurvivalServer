@@ -77,8 +77,8 @@ public class NickNamer {
                 }
             }
         }.runTaskLater(Main.main,2);
-        cp.getPlayer().setPlayerListName(playername);
-
+        Player p = cp.getPlayer();
+        p.setPlayerListName(playername);
     }
     public static void sendPackage(Packet packet){
         for(Player all : Bukkit.getOnlinePlayers()){
@@ -88,7 +88,7 @@ public class NickNamer {
     public static void onClick(Player p, ItemStack i, int row){
         if(i.getType().equals(Material.SKULL_ITEM)){
             if(Command_Nick.cooldownnick.contains(p.getName())){
-                p.sendMessage(Main.prefix + "§7Du kannst dich nur alle 20 Sekunden Nicken!");
+                p.sendMessage(Main.prefix + "§7Du kannst dich nur alle §c20§7 Sekunden Nicken!");
                 return;
             }
             Nick n = Nick.nicks.get(row);

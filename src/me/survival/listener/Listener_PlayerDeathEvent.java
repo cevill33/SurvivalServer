@@ -1,5 +1,6 @@
 package me.survival.listener;
 
+import me.survival.methods.NickNamer;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,7 @@ public class Listener_PlayerDeathEvent implements Listener {
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity();
+		if(NickNamer.changeing.contains(p.getName())) return;
 		UUID id = p.getUniqueId();
 		VetoxPlayer vP = VetoxPlayer.stats.get(id);
 		vP.setDeaths(vP.getDeaths() + 1);
@@ -30,9 +32,6 @@ public class Listener_PlayerDeathEvent implements Listener {
 			killer.sendMessage(Main.prefix + "§7Du hast den Spieler §a" + p.getDisplayName() + " §7gekillt!");
 			VetoxPlayer vK = VetoxPlayer.stats.get(killer.getUniqueId());
 			vK.setKills(vK.getKills() + 1);
-			
-			
-			
 		}
 		
 		
