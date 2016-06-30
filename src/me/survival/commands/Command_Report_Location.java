@@ -31,22 +31,25 @@ public class Command_Report_Location implements CommandExecutor {
                 }
                 Location loc = p.getLocation();
                 LocationReport locr = new LocationReport(loc, grund);
-                p.sendMessage(Main.prefix + "§7Diese Region wurde erfolgreich mit dem Grund: " + grund + "Reported!");
+                p.sendMessage(Main.prefix + "§7Diese Region wurde erfolgreich mit dem Grund: " + grund + "reportet!");
                 for (Player o : Bukkit.getOnlinePlayers()) {
                     //TODO Abfrage ob Supporter online sind und wenn denen diese Location senden.
 
                     VetoxPlayer vP = (VetoxPlayer)VetoxPlayer.stats.get(p.getUniqueId());
 
-
-                    ClickableChat.send(o, Main.prefix, "§cEs wurde eine Location für " + grund + " reportet!", "§7Clicke um zu der Stelle zu gelangen", "/tp " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
+                    ClickableChat.send(o, Main.prefix, "§cEs wurde eine Location für " + grund + "reportet!", "§7Klicke um zu der Stelle zu gelangen", "/tp " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
                 }
                 break;
             case "reportedchunks":
+                if(LocationReport.locationreports.isEmpty()){
+                    p.sendMessage(Main.prefix + "§7Es wurden im moment keine regionen reportet");
+                    break;
+                }
                 p.sendMessage(Main.prefix + "§cReportete Regionen:");
                 for(int i = 0;i<LocationReport.locationreports.size();i++) {
                     LocationReport lr = LocationReport.locationreports.get(i);
                     Location lrloc = LocationReport.getLocation(lr);
-                    ClickableChat.send(p, "§3" + i + ":", "§cLocation für " + LocationReport.getReason(lr) + " reportet!", "§7Clicke um zu der Stelle zu gelangen", "/tp " + lrloc.getBlockX() + " " + lrloc.getBlockY() + " " + lrloc.getBlockZ());
+                    ClickableChat.send(p, "§3" + i + ":", "§cLocation für " + LocationReport.getReason(lr) + " reportet!", "§7Klicke um zu der Stelle zu gelangen", "/tp " + lrloc.getBlockX() + " " + lrloc.getBlockY() + " " + lrloc.getBlockZ());
                 }
                 break;
         }
