@@ -25,9 +25,6 @@ public class Listener_PlayerInteractEvent implements Listener {
 		String id = p.getUniqueId().toString();
 		Block b = e.getClickedBlock();
 
-		if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-			Nation.nationextraevent(p);
-		}
 		if(e.getClickedBlock() != null) {
 			
 //			if(b.getType().equals(Material.ANVIL)) {

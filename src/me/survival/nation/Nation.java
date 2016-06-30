@@ -43,13 +43,13 @@ public enum Nation {
 
     public static HashMap<Player,Integer> visi = new HashMap<>();
 
-    public static void nationextraevent(Player p,Block b) {
+    /*public static void nationextraevent(Player p,Block b) {
         if (p.isSneaking()) {
             if (NationManager.isPlayerInNation(p,N1)) {
-                if(b.getType() == Material.CROPS){
+                if(b.getType() == Material.CROPS && b.getData() == 7){
                     b.setType(Material.CROPS);
                     b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.WHEAT));
-                    b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.CROPS));
+                    b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.SEEDS));
                 }
             }
             if (NationManager.isPlayerInNation(p,N2)) {
@@ -68,6 +68,6 @@ public enum Nation {
                 }
             }
         }
-    }
+    }*/
 
 }

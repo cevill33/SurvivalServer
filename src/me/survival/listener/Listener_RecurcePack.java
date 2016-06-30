@@ -15,7 +15,7 @@ public class Listener_RecurcePack implements Listener {
 	@EventHandler
 	public void onRecurePack(PlayerResourcePackStatusEvent e) {
 		Player p = e.getPlayer();
-		if(e.getStatus().equals(Status.DECLINED) || e.getStatus().equals(Status.DECLINED)) {
+		if(e.getStatus().equals(Status.DECLINED) || e.getStatus().equals(Status.DECLINED)) {//TODO wieso doppelt
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
 				
 				@Override
