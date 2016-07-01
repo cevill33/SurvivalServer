@@ -1,7 +1,6 @@
 package me.survival.listener;
 
 import me.survival.Main;
-import me.survival.api.WorldManager;
 import me.survival.nation.Nation;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

@@ -4,7 +4,6 @@ import me.survival.Main;
 import me.survival.api.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 
 /**
