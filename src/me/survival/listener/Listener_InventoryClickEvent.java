@@ -3,6 +3,8 @@ package me.survival.listener;
 import me.survival.api.ItemBuilder;
 import me.survival.elite.Command_Head;
 import me.survival.methods.NickNamer;
+import me.survival.nation.NationManager;
+import me.survival.npc.King;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -179,11 +181,19 @@ public class Listener_InventoryClickEvent implements Listener {
 				}
 			}
 
+			//Choose Nation
+			if(name.equals("§7Du bist bereits in einer Nation!")) {
+				e.setCancelled(true);
+				King.onNationChooseGuiKlick(p, e.getRawSlot(), e.getCurrentItem());
+				return;
+			}
+
 			//Head
 			//TODO genauere abfrage ob der spieler einen helm aufhat.
 			if(name.equals("§aHeads")){
 				Command_Head.onKlick(p, current.getType());
 				e.setCancelled(true);
+				return;
 			}
 			
 			

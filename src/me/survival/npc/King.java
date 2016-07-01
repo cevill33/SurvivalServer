@@ -7,6 +7,7 @@ import me.vetoxapi.mongodb.DBVetox;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import me.vetoxapi.objects.MoneyManager;
 import me.vetoxapi.objects.VetoxPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -62,6 +63,11 @@ public class King {
         }
     }
 
+    public static void openKingGUI(Player p) {
+        Inventory inv = Bukkit.getServer().createInventory(null, 27, "§aDein König:");
+        
+    }
+
     public static void onKingKlick(Player p, String kingname) {
         VetoxPlayer vP = VetoxPlayer.stats.get(p.getUniqueId());
         if(vP.getNation() == null) {
@@ -106,6 +112,11 @@ public class King {
 
 
             }
+            return;
+        } else {
+
+            //If Player is in a Nation:
+
         }
     }
 
