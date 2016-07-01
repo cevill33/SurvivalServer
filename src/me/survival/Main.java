@@ -77,6 +77,7 @@ public class Main extends JavaPlugin {
 		bundle.add(new Listener_EntityDamageEvent());
 		bundle.add(new Listener_WaterFlowEvent());
 		bundle.add(new Listener_PlayerBucketFillEvent());
+		bundle.add(new Listener_NPCClickEvent());
 		lmanager.register("survivalevents", bundle);
 		
 		Ask.registerQuestions();

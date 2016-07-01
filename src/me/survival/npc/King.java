@@ -1,11 +1,17 @@
 package me.survival.npc;
 
+import me.survival.Main;
 import me.survival.api.ItemBuilder;
 import me.survival.nation.Nation;
+import me.vetoxapi.mongodb.DBVetox;
+import me.vetoxapi.mongodb.DBVetoxPlayer;
+import me.vetoxapi.objects.MoneyManager;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Created by mariusk on 16.06.2016.
@@ -20,6 +26,42 @@ public class King {
         p.openInventory(inv);
     }
 
+    public static void onNationChooseGuiKlick(Player p, int slot, ItemStack stack) {
+
+        if(slot == 12) {
+            Nation n = Nation.findByString(stack.getItemMeta().getDisplayName());
+            new DBVetoxPlayer(p.getUniqueId().toString()).setObject("nation", n.getName());
+            VetoxPlayer.stats.get(p.getUniqueId()).setNation(n.getName());
+            DBVetox vetox = new DBVetox();
+            p.sendMessage(Nation.prefix + "§aDu bist nun ein Mitglied der Nation §f" + n.getName() + "§a!");
+
+            if(vetox.getNation1Player() < vetox.getNation2Player()) {
+                MoneyManager.addMoney(p.getUniqueId(), 100);
+                p.sendMessage(Nation.prefix + "§aZusätzlich bekommst du §2100Coins§a.");
+            }
+            return;
+        }
+
+        if(slot == 14) {
+            Nation n = Nation.findByString(stack.getItemMeta().getDisplayName());
+            new DBVetoxPlayer(p.getUniqueId().toString()).setObject("nation", n.getName());
+            VetoxPlayer.stats.get(p.getUniqueId()).setNation(n.getName());
+            DBVetox vetox = new DBVetox();
+            p.sendMessage(Nation.prefix + "§aDu bist nun ein Mitglied der Nation §f" + n.getName() + "§a!");
+
+            if(vetox.getNation2Player() < vetox.getNation1Player()) {
+                MoneyManager.addMoney(p.getUniqueId(), 100);
+                p.sendMessage(Nation.prefix + "§aZusätzlich bekommst du §2100Coins§a.");
+            }
+            return;
+        }
+
+        if(stack.getType().equals(Material.BARRIER)) {
+            p.closeInventory();
+            p.playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 1);
+        }
+    }
+
     public static void onKingKlick(Player p, String kingname) {
         VetoxPlayer vP = VetoxPlayer.stats.get(p.getUniqueId());
         if(vP.getNation() == null) {
@@ -27,14 +69,14 @@ public class King {
                 Talk.talk.put(p.getUniqueId(), new Talk(kingname, 0));
             }
             Talk t = Talk.talk.get(p.getUniqueId());
-            int steps = 4;
+            int steps = 7;
             switch (t.getStep()) {
                 case 0:
                     NPCManager.sendNPC(p, t.getStep() + 1, steps, kingname, "Hi ich bin der König von diesem Land!");
                     t.highStep();
                     break;
                 case 1:
-                    NPCManager.sendOwn(p, "Okay! Doch ich bin hier um eine Nation beizutreten.");
+                    NPCManager.sendOwn(p, "Gut! Denn ich bin hier um einer Nation beizutreten.");
                     t.highStep();
                     break;
                 case 2:
@@ -52,7 +94,7 @@ public class King {
                     break;
                 case 5:
                     NPCManager.sendNPC(p, t.getStep() + 1, steps, kingname, "Klicke nun nochmals auf mich um eine Nation auszuwählen, wenn du einer bestimmten Nation beitretest bekommst du eine Belohnung." +
-                            " Welche dies ist wirst du sehen, wenn du nun auf mich klickst.");
+                            " Bei welcher Nation du die Belohnung  bekommst wirst du sehen, wenn du nun auf mich klickst.");
                     t.highStep();
                     break;
                 case 6:

@@ -27,10 +27,21 @@ public enum Nation {
 
     private String name;
     private List<String> desc;
+    public static final String prefix = "§5[§fNATION§5] §f";
 
     Nation(String name, List<String> desc) {
         this.name = name;
         this.desc = desc;
+    }
+
+    public static Nation findByString(String s) {
+        if(N1.getName().equals(s)) {
+            return N1;
+        }
+        if(N2.getName().equals(s)) {
+            return N2;
+        }
+        return null;
     }
 
     public String getName() {
