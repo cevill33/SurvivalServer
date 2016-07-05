@@ -44,6 +44,13 @@ public class Listener_InventoryClickEvent implements Listener {
 
 		if(name.startsWith("§a")) {
 
+			//Bürgermeister
+			if(name.equals("§aDein König:")){
+				e.setCancelled(true);
+				King.klickKingGUI(p,current);
+				return;
+			}
+
 			//Sword
 			if(name.equals("§a§5Sword")) {
 				e.setCancelled(true);

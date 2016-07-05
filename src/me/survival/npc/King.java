@@ -3,6 +3,7 @@ package me.survival.npc;
 import me.survival.Main;
 import me.survival.api.ItemBuilder;
 import me.survival.nation.Nation;
+import me.survival.nation.NationManager;
 import me.vetoxapi.mongodb.DBVetox;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import me.vetoxapi.objects.MoneyManager;
@@ -11,13 +12,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
 
 /**
  * Created by mariusk on 16.06.2016.
  */
 public class King {
+
+    public static ArrayList<String> beschwerdeeinreichen = new ArrayList<>();
+    public static ArrayList<String> beschwerden = new ArrayList<>();
+
 
     public static void openNationCooseGui(Player p) {
         Inventory inv = p.getServer().createInventory(null,27,"§aWähle deine Nation/Rasse!");
@@ -65,7 +74,27 @@ public class King {
 
     public static void openKingGUI(Player p) {
         Inventory inv = Bukkit.getServer().createInventory(null, 27, "§aDein König:");
-        
+
+        inv.setItem(0,new ItemBuilder(Material.SAPLING).setDiplayname("§aKönigwahl").setLore(new String[]{"§7Wähle deinen neuen König"}).build());
+        inv.setItem(8,new ItemBuilder(Material.SKULL_ITEM,1,(short)1).setDiplayname("§cBeschwerde einreichen").setLore(new String[]{"§7Du findest, dass der","§7König sich nicht richtig","§7verhält? Reiche eine ","§7Beschwerde ein!","§cMissbrauch/Spam strafbar"}).build());
+        inv.setItem(9,new ItemBuilder(Material.getMaterial(351),1,(short)15).setDiplayname("§7Nation wechseln").setLore(new String[]{"§7Du bist nicht mehr","§7zufrieden in deiner Nation?","§7Wechsel sie einfach!"}).build());
+        inv.setItem(13,new ItemBuilder(Material.GOLD_HELMET).setDiplayname("§6Dein König").build());
+        inv.setItem(21,new ItemBuilder(Material.DIAMOND_SWORD).setDiplayname("§9Punkte von " + Nation.N1.getName()).build());
+        inv.setItem(23,new ItemBuilder(Material.DIAMOND_SWORD).setDiplayname("§9Punkte von " + Nation.N2.getName()).build());
+
+    }
+    public static void klickKingGUI(Player p,ItemStack i){
+        Material m = i.getType();
+        if(m.equals(Material.SAPLING)){
+            Inventory inv = Bukkit.getServer().createInventory(null, 27, "§aNeuer König?");
+
+
+        }else if(m.equals(Material.SKULL_ITEM)){
+            beschwerdeeinreichen.add(p.getName());
+            p.sendMessage(Nation.prefix + "Schreibe deine Beschwerde in den Chat.");
+        }else if(i.equals(new ItemBuilder(Material.getMaterial(351),1,(short)15).setDiplayname("§7Nation wechseln").setLore(new String[]{"§7Du bist nicht mehr","§7zufrieden in deiner Nation?","§7Wechsel sie einfach!"}).build())){
+            NationManager.openCooseInventory(p);
+        }
     }
 
     public static void onKingKlick(Player p, String kingname) {

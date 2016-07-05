@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.client.model.Filters;
+import me.survival.nation.Nation;
+import me.survival.npc.King;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -35,7 +37,11 @@ public class Listener_PlayerChatEvent implements Listener {
 		Player p = e.getPlayer();
 		String msg = e.getMessage();
 		String tolowmsg = msg.toLowerCase();
-		
+		if(King.beschwerdeeinreichen.contains(p.getName())){
+			King.beschwerden.add(msg);
+			King.beschwerdeeinreichen.remove(p.getName());
+			p.sendMessage(Nation.prefix + "Du hast die Beschwerde erfolgreich eingereicht!");
+		}
 		
 		//Ask...
 		if(msg.startsWith("?") && msg.length() > 3) {
