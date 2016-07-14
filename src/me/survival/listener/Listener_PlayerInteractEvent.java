@@ -4,6 +4,9 @@ import me.survival.Main;
 import me.survival.nation.Nation;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,9 +17,12 @@ import chunkgs.ChunkManager;
 import me.survival.magic.MagicManager;
 import me.survival.objects.BetterEnchant;
 import worldmanager.GsAllowedWorld;
+
+import java.util.HashMap;
+
 public class Listener_PlayerInteractEvent implements Listener {
 
-	
+	public static HashMap<Player,Entity> chair = new HashMap<>();
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
@@ -39,7 +45,13 @@ public class Listener_PlayerInteractEvent implements Listener {
 				}
 				return;
 			}
-			
+			if(b.getType() == Material.WOOD_STAIRS || b.getType()==Material.SMOOTH_STAIRS){
+				if(b.getLocation().subtract(0,2,0).getBlock().getType() == Material.COAL_BLOCK){
+					Arrow arrow = (Arrow) p.getWorld().spawnEntity(b.getLocation().add(0.5,0,0.5), EntityType.ARROW);
+					arrow.setPassenger(p);
+					chair.put(p,arrow);
+				}
+			}
 			
 			if(b.getType() == Material.CHEST || b.getType() == Material.TRAPPED_CHEST ||  b.getType() == Material.FURNACE || b.getType() == Material.BURNING_FURNACE || b.getType() == Material.FIRE) {
 				if(GsAllowedWorld.worlds.containsKey(b.getWorld().getName())) {

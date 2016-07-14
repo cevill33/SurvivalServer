@@ -66,6 +66,7 @@ public class Main extends JavaPlugin {
 		bundle.add(new Listener_PlayerInteractEvent());
 		bundle.add(new Listener_PlayerExpChangeEvent());
 		bundle.add(new Listener_PlayerRespawnEvent());
+		bundle.add(new Listener_PlayerToggleSneakEvent());
 		bundle.add(new Listner_PlayerCommandPreprocessEvent());
 		bundle.add(new Listener_SignKlickEvent());
 		bundle.add(new Listener_SongEndEvent());
