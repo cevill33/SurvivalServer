@@ -1,6 +1,7 @@
 package me.survival.listener;
 
 import me.survival.methods.Kit;
+import me.survival.nation.Nation;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Bukkit;
@@ -68,6 +69,10 @@ public class Listener_PlayerJoinEvent implements Listener {
 		}
 		if(p.hasPermission("vetox.boost.100")) {
 			vP.setBoost(vP.getBoost() + 1);
+		}
+
+		if(vP.getNation() != null) {
+			Nation.sendNationName(p, Nation.findByString(vP.getNation()));
 		}
 
 		int level = vP.getLvl();

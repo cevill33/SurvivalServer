@@ -9,6 +9,7 @@ import me.survival.commands.*;
 import me.survival.elite.*;
 import me.survival.listener.*;
 import me.survival.methods.*;
+import me.survival.nation.NationArena;
 import me.survival.objects.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -105,12 +106,13 @@ public class Main extends JavaPlugin {
 		VillagerShop.onEnable();
 		Radio.onDisable(); // ???
 		VetoxRecipes.addFireBallRecipe();
-		Bukkit.getConsoleSender().sendMessage("§3VetoxSurvival akitiviert!");
 		ChunkManager.onEnable();
 		ItemClear.onEnable();
 		VetoxRecipes.disableRecipes(this);
 		AFK.registerAFK(this);
 		Nick.registerNicks();
+		NationArena.registerNationArenas();
+		Bukkit.getConsoleSender().sendMessage("§3VetoxSurvival akitiviert!");
 	}
 	
 
@@ -157,6 +159,7 @@ public class Main extends JavaPlugin {
 		getCommand("sethome").setExecutor(new Command_SetHome());
 		getCommand("liquidclean").setExecutor(new Command_LiquidClean());
 		getCommand("nick").setExecutor(new Command_Nick());
+		getCommand("nation").setExecutor(new Command_Nation());
 	}
 	
 

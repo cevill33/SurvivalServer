@@ -182,28 +182,28 @@ public class Listener_InventoryClickEvent implements Listener {
 			}
 
 			//Choose Nation
-			if(name.equals("§7Du bist bereits in einer Nation!")) {
+			if(name.equals("§aWähle deine Nation/Rasse!")) {
 				e.setCancelled(true);
 				King.onNationChooseGuiKlick(p, e.getRawSlot(), e.getCurrentItem());
 				return;
 			}
 
 			//Head
-			//TODO genauere abfrage ob der spieler einen helm aufhat.
-			if(name.equals("§aHeads")){
+			//TODO Wirft Fehler muss verbessert werden:
+			/*if(name.equals("§aHeads")){
 				Command_Head.onKlick(p, current.getType());
 				e.setCancelled(true);
 				return;
-			}
+			}*/
 			
 			
 			return;
 		}
 
 		//Click on Head
-		if(e.getInventory() instanceof PlayerInventory) {
+		/*if(e.getInventory() instanceof PlayerInventory) {
 			e.setCancelled(Command_Head.onHeadClick(p, e.getCurrentItem()));
-		}
+		}*/
 		
 
 		

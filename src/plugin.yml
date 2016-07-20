@@ -44,3 +44,5 @@ commands:
   bewerben:
   sethome:
   liquidclean:
+  nation:
+     aliases: [n,rasse]

@@ -58,6 +58,7 @@ public class Command_Stats implements CommandExecutor {
 		getter.sendMessage("   §8- §3Spielzeit: §7" + vP.getHours() + "Stunden " + vP.getMinutes() + "Minuten");
 		getter.sendMessage("   §8- §3Kills: §7" + vP.getKills());
 		getter.sendMessage("   §8- §3EXP- Bonus: §a§l+ §7" + vP.getBoost() * 100 + "%");
+		getter.sendMessage("   §8- §3Nation: §7" + vP.getNation());
 		int rangpunkte =  500*vP.getLvl() + vP.getHours()*50 + vP.getMinutes() + vP.getKills()*5 + new Double(coins).intValue()*2;
 		getter.sendMessage("   §8- §3RangPunkte: §7" + rangpunkte);
 		if(!cooldown.contains(p.getUniqueId())) {

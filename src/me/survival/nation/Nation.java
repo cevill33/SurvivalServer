@@ -1,17 +1,22 @@
 package me.survival.nation;
 
+
 import me.survival.Main;
-import me.survival.api.ItemBuilder;
-import me.survival.nation.NationManager;import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import me.survival.npc.King;
+import me.vetoxapi.objects.VetoxPlayer;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,16 +27,19 @@ import java.util.List;
 public enum Nation {
 
 
-    N1("Aincrad", Arrays.asList("")),
-    N2("Trivia", Arrays.asList(""));
+    N1("Aincrad", King.descn1, new Location(Bukkit.getWorld("Fight"),1,7,1)),
+    N2("Trivia", King.descn2, new Location(Bukkit.getWorld("Fight"),1,7,1));
 
+    static Scoreboard board = Main.main.getServer().getScoreboardManager().getMainScoreboard();
     private String name;
     private List<String> desc;
-    public static final String prefix = "§5[§fNATION§5] §f";
+    private Location klassicwarlocation;
+    public static final String prefix = "§a[§7Nation§a] §f";
 
-    Nation(String name, List<String> desc) {
+    Nation(String name, List<String> desc, Location klassicwarlocation) {
         this.name = name;
         this.desc = desc;
+        this.klassicwarlocation = klassicwarlocation;
     }
 
     public static Nation findByString(String s) {
@@ -54,35 +62,42 @@ public enum Nation {
 
     public static HashMap<Player,Integer> visi = new HashMap<>();
 
-    @Deprecated
-    public static void nationextraevent(Player p,Block b) {
-        if (p.isSneaking()) {
+    public Location getKlassicwarlocation() {
+        return klassicwarlocation;
+    }
 
-            if (NationManager.isPlayerInNation(p,N1)) {
-                if(b.getType() == Material.CROPS){
-                    b.setType(Material.CROPS);
-                    b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.WHEAT));
-                    b.getLocation().getWorld().dropItem(b.getLocation(), new ItemStack(Material.CROPS));
-                }
-            }
 
-            if (NationManager.isPlayerInNation(p,N2)) {
-                if(visi.get(p)==0) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 3));
-                    visi.put(p, 60);
-                    Bukkit.getScheduler().runTaskTimerAsynchronously(Main.main, new Runnable() {
-                        @Override
-                        public void run() {
-                            visi.put(p, visi.get(p) - 1);
-                            if (visi.get(p) == 0) {
-                                return;
-                            }
-                        }
-                    }, 20, 20);
-                }
-            }
-
+    public static void joinFight(Player p) {
+        VetoxPlayer vP = VetoxPlayer.stats.get(p.getUniqueId());
+        if(vP.getNation() == null) {
+            p.sendMessage(Nation.prefix + "§cDu musst zuerst einer Nation beitreten.");
+            p.sendMessage(Nation.prefix + "§cRede dafür mit dem Bürgermeister!");
+            return;
         }
+
+        Date date = new Date();
+
+
+        //TODO: == to !=
+        if(date.getHours() == 18) {
+            p.sendMessage(Nation.prefix + "§cDu kannst nur von §f18:00 - 19:00 §ckämpfen.");
+            p.sendMessage(Nation.prefix + "§cZurzeit ist es: §f" + date.getHours() + ":" + date.getMinutes() + "§c.");
+            return;
+        }
+
+        Location loc = null;
+        if(vP.getNation().equals("Aincrad")) loc = NationArena.arenas.get(0).getN1();
+        if(vP.getNation().equals("Trivia"))  loc = NationArena.arenas.get(0).getN2();
+        p.teleport(loc);
+        p.sendMessage(Nation.prefix + "§7Viel Glück beim Kämpf.");
+    }
+
+    public static void sendNationName(Player p, Nation nation) {
+        Scoreboard sb = Bukkit.getScoreboardManager().getMainScoreboard();
+        Objective obj = sb.getObjective("obj" + nation.getName());
+        if(obj == null) obj = sb.registerNewObjective("obj" + nation.getName(), "dummy");
+        obj.setDisplaySlot(DisplaySlot.BELOW_NAME);
+        obj.setDisplayName("§7" + nation.getName());
     }
 
 }
