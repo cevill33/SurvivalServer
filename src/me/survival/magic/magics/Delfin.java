@@ -16,7 +16,7 @@ import org.bukkit.util.Vector;
  */
 public class Delfin {
 
-    public static int cooldown = 35;
+    public static int cooldown = 40;
 
     public static void fire(Player p) {
         MagicManager.startLoadinMana(p);
@@ -24,7 +24,7 @@ public class Delfin {
         AntiCheat.addFlying(p, "delfin");
 
         ID[0] = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.main, new Runnable() {
-            int step = 20;
+            int step = 0;
 
             @Override
             public void run() {
@@ -39,11 +39,11 @@ public class Delfin {
                 }
 
                 if(p.getLocation().getBlock().getType().equals(Material.STATIONARY_WATER)) {
-                    Vector v = p.getLocation().getDirection().multiply(1D).setY(1D);
+                    Vector v = p.getLocation().getDirection().multiply(1.2D).setY(1.2D);
                     p.setVelocity(v);
                 }
 
-                if(step == 20) {
+                if(step == 30) {
                     Bukkit.getScheduler().cancelTask(ID[0]);
                     AntiCheat.removeFlying(p, "delfin");
                 }

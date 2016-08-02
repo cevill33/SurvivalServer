@@ -6,10 +6,7 @@ import me.survival.methods.NickNamer;
 import me.survival.nation.NationManager;
 import me.survival.npc.King;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -75,7 +72,12 @@ public class Listener_InventoryClickEvent implements Listener {
 						p.sendMessage(Main.prefix + "§cDu hast noch keinen Home, setze ihn mit /sethome!");
 						return;
 					}
-					
+
+					if(!Bukkit.getWorlds().contains(loc.getWorld())) {
+						p.sendMessage(Main.prefix + "§cDie Welt in der dein Home liegt existiert nicht mehr.");
+						return;
+					}
+
 					loc.setY(250);
 					p.teleport(loc);
 					p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*9, 10));

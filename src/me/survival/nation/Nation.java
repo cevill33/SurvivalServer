@@ -2,12 +2,18 @@ package me.survival.nation;
 
 
 import me.survival.Main;
+import me.survival.magic.MagicManager;
+import me.survival.methods.InventoryLock;
 import me.survival.npc.King;
+import me.vetoxapi.api.BoardManager;
+import me.vetoxapi.objects.MoneyManager;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -15,10 +21,7 @@ import org.bukkit.scoreboard.Team;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Jakob on 31.05.2016.
@@ -67,6 +70,11 @@ public enum Nation {
     }
 
 
+
+
+
+    public static List<String> respawn = new ArrayList<>();
+
     public static void joinFight(Player p) {
         VetoxPlayer vP = VetoxPlayer.stats.get(p.getUniqueId());
         if(vP.getNation() == null) {
@@ -90,13 +98,37 @@ public enum Nation {
         if(vP.getNation().equals("Trivia"))  loc = NationArena.arenas.get(0).getN2();
         p.teleport(loc);
         p.sendMessage(Nation.prefix + "§7Viel Glück beim Kämpf.");
+        BoardManager.setNationFightScoreboard(p);
     }
 
+    public static void onRespawn(Player p) {
+        ItemStack[] inven = InventoryLock.inv.get(p.getName());
+        if(inven != null) {
+
+            p.getInventory().setArmorContents(InventoryLock.armor.get(p.getName()));
+            p.getInventory().setContents(inven);
+            InventoryLock.inv.remove(p.getName());
+            InventoryLock.armor.remove(p.getName());
+            p.closeInventory();
+            p.setLevel(VetoxPlayer.stats.get(p.getUniqueId()).getLvl());
+            p.setExp(0.99f);
+            MagicManager.mana.put(p.getName(), 100);
+            return;
+        }
+        p.setLevel(VetoxPlayer.stats.get(p.getUniqueId()).getLvl());
+        p.setExp(0.99f);
+        MagicManager.mana.put(p.getName(), 100);
+        p.closeInventory();
+
+    }
+
+    @Deprecated
     public static void sendNationName(Player p, Nation nation) {
-        Scoreboard sb = Bukkit.getScoreboardManager().getMainScoreboard();
+        Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective obj = sb.getObjective("obj" + nation.getName());
         if(obj == null) obj = sb.registerNewObjective("obj" + nation.getName(), "dummy");
         obj.setDisplaySlot(DisplaySlot.BELOW_NAME);
+        Team t = sb.registerNewTeam(Nation.prefix);
         obj.setDisplayName("§7" + nation.getName());
     }
 

@@ -2,6 +2,7 @@ package me.survival.listener;
 
 import me.survival.magic.MagicManager;
 import me.survival.methods.NickNamer;
+import me.survival.nation.Nation;
 import me.vetoxapi.objects.MoneyManager;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Bukkit;
@@ -55,6 +56,10 @@ public class Listener_PlayerRespawnEvent implements Listener {
 						p.setLevel(VetoxPlayer.stats.get(p.getUniqueId()).getLvl());
 						p.setExp(0.99f);
 						MagicManager.mana.put(p.getName(), 100);
+						return;
+					}
+					if(Nation.respawn.contains(p.getName())) {
+						Nation.respawn.remove(p.getName());
 						return;
 					}
 					InventoryLock.openInv(p);

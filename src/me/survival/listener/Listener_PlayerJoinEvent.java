@@ -78,7 +78,7 @@ public class Listener_PlayerJoinEvent implements Listener {
 		}
 
 		if(vP.getNation() != null) {
-			Nation.sendNationName(p, Nation.findByString(vP.getNation()));
+			//Nation.sendNationName(p, Nation.findByString(vP.getNation()));
 		}
 
 		int level = vP.getLvl();

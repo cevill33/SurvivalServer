@@ -1,6 +1,8 @@
 package me.survival.magic.magics;
 
+import me.survival.Main;
 import me.survival.magic.MagicManager;
+import me.survival.nation.Nation;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -24,6 +26,10 @@ public class Pheonix {
     public static void fire(Player p) {
 
         //TODO: Cancell Damage
+        if(!p.getWorld().getPVP()) {
+            p.sendMessage(Main.prefix + "§cNur in PvP Welt aktiv.");
+            return;
+        }
         Block block = p.getTargetBlock((Set<Material>) null, 100);
         //Radius 1
         MagicManager.startLoadinMana(p);

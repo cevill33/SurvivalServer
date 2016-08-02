@@ -89,7 +89,13 @@ public class Command_Song implements CommandExecutor {
 		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aDas A Team").setLore("§8:The A Team").build());
 		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aRadioactive").setLore("§8:Radioactive").build());
 		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aPirate").setLore("§8:Hes A Pirate").build());
-		
+
+		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aZelda").setLore("§8:Zelda").build());
+		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aMario").setLore("§8:Super Mario Bros Athletic").build());
+		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aTwilight").setLore("§8:Vanilla Twilight").build());
+		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aHall of Fame").setLore("§8:Hall of Fame").build());
+		inv.addItem(new ItemBuilder(Material.NOTE_BLOCK).setDiplayname("§aFriday").setLore("§8:Friday").build());
+
 		p.openInventory(inv);
 	}
 	

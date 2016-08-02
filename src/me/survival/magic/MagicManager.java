@@ -74,7 +74,7 @@ public class MagicManager {
 			dec.add("§3Kosten: §7" + magic.getCost());
 			if(magiclist.contains(magic)) {
 				short subid = (short) magic.getSubid();
-				inv.setItem(magic.getId(), new ItemBuilder(magic.getMat(), 1, subid).setDiplayname(magic.getName()).setLoreInArrayList(dec).build());
+				inv.setItem(magic.getSlot(), new ItemBuilder(magic.getMat(), 1, subid).setDiplayname(magic.getName()).setLoreInArrayList(dec).build());
 			} else {
 				inv.setItem(magic.getSlot(), new ItemBuilder(Material.DEAD_BUSH).setDiplayname(magic.getName()).setLoreInArrayList(dec).build());
 			}
@@ -173,7 +173,7 @@ public class MagicManager {
 		if(Magic.values().length - 1 < slot) {
 			return;
 		}
-		Magic magic = Magic.values()[slot];
+		Magic magic = Magic.getBySlot(slot);
 		List<Magic> magiclist = mymagics.get(p.getName());
 		if(magiclist.contains(magic)) {
 			MagicManager.magic.put(p.getName(), magic.getClassName());
@@ -195,7 +195,7 @@ public class MagicManager {
 	
 	public static void onBuyMagic(Player p, int id) {
 		p.closeInventory();
-		Magic magic = Magic.values()[id];
+		Magic magic = Magic.getBySlot(id);
 		UUID UUID = p.getUniqueId();
 		VetoxPlayer vP = VetoxPlayer.stats.get(UUID);
 		if(magic.getType() == MagicType.ELITE) {
@@ -219,11 +219,11 @@ public class MagicManager {
 				int lvl = vP.getLvl();
 				if(lvl < 50) {
 					p.closeInventory();
-					p.sendMessage(prefix + "§cDu ben§tigst Level 50 um God- Magics zu kaufen");
+					p.sendMessage(prefix + "§cDu benötigst Level 50 um God- Magics zu kaufen");
 					return;
 				}
 			} else {
-				p.sendMessage(prefix + "§cDu ben§tigst Level 50 und §6§lELITE §coder §a§lTITAN§c!");
+				p.sendMessage(prefix + "§cDu benötigst Level 50 und §6§lELITE §coder §a§lTITAN§c!");
 				p.closeInventory();
 				return;
 			}

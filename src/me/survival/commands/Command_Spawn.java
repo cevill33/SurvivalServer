@@ -30,8 +30,8 @@ public class Command_Spawn implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender cs, Command arg1, String arg2, String[] args) {
 		Player p = (Player) cs;
-		if((Integer) new DBVetoxPlayer(p.getUniqueId().toString()).getObject("maintutorial") == 0 || new QuestPlayer(p.getUniqueId().toString()).getDocument() != null) {
-			p.sendMessage(Main.prefix + "§cDu musst dir zuerst das Tutorial anhören!");
+		if((Integer) new DBVetoxPlayer(p.getUniqueId().toString()).getObject("maintutorial") == 0 || new QuestPlayer(p.getUniqueId().toString()).getDocument() == null) {
+			p.sendMessage(Main.prefix + "§cDu musst zuerst die anfangs Quest machen --> /tutorial!");
 			return true;
 		}
 		

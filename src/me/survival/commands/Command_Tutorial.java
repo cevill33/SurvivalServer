@@ -2,6 +2,8 @@ package me.survival.commands;
 
 import me.survival.Main;
 import me.survival.npc.MessageThread;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,15 +17,10 @@ public class Command_Tutorial implements CommandExecutor {
 		
 		Player p = (Player) cs;
 		if(args.length == 0) {
-			Tutorial.startTutorial(p);
+			p.teleport(new Location(Bukkit.getWorld("Clan"), -293, 5, 464));
 			return true;
 		}
 
-		if(args[0].equalsIgnoreCase("test")) {
-			p.sendMessage("GO");
-			new MessageThread("Bürger", "Hallo ich bin der Bürgermeißter. Ich lebe hier seit ein paar Jahren. Es ist ein kleiner Test also denke nicht dass dies was ich sage wichtig ist. Ich grüße meinen Feind Gomme!", p).run();
-			return true;
-		}
 		
 		p.sendMessage(Main.prefix + "§cSyntax: §7/tutorial!");
 		return false;

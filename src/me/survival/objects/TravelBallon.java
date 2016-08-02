@@ -102,7 +102,7 @@ public class TravelBallon {
 	
 	public static void registerTravelBallon() {
 		new TravelBallon(Material.NETHER_STAR, "Spawn", new Location(Bukkit.getWorld("Mainworld"), -254.5, 48.5, 438.5), false, "Elbros", 0, "Hauptwelt", 13);
-		new TravelBallon(Material.FLOWER_POT_ITEM, "Farmwelt", new Location(Bukkit.getWorld("Farmworld1A_2"), -30, 300, 250), true, "Europia", 0, "Farmwelt", 16);
+		new TravelBallon(Material.FLOWER_POT_ITEM, "Farmwelt", new Location(Bukkit.getWorld("Farmworld1A_3"), -30, 300, 250), true, "Europia", 0, "Farmwelt", 16);
 		new TravelBallon(Material.FIREBALL, "Monster", new Location(Bukkit.getWorld("Monsterworld"), 51.5, 13.5, 1.5), false, "Pandora", 0, "Monsterwelt", 26);
 		new TravelBallon(Material.PACKED_ICE, "Ice", new Location(Bukkit.getWorld("Mainworld"), 1677.5, 53.2, -1529.5), false, "Elbros", 2, "Hauptwelt", 21);
 		new TravelBallon(Material.HAY_BLOCK, "Rohan", new Location(Bukkit.getWorld("Mainworld"), -984.5, 61, 803.5), false, "Elbros", 10, "Hauptwelt", 23);
