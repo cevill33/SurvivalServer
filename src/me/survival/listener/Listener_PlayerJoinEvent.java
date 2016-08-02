@@ -1,5 +1,6 @@
 package me.survival.listener;
 
+import me.survival.commands.Command_Vanish;
 import me.survival.methods.Kit;
 import me.survival.nation.Nation;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
@@ -45,7 +46,12 @@ public class Listener_PlayerJoinEvent implements Listener {
 		Title title = new Title("§aWilkommen auf", "§3VetoxMc.de", 3, 18,6);
 		title.setTimingsToTicks();
 		title.send(p);
-		
+		for(Player all : Bukkit.getOnlinePlayers()){
+			p.showPlayer(all);
+		}
+		for(int i = 0;i<Command_Vanish.spectatet.size();i++){
+			p.hidePlayer(Bukkit.getPlayer(Command_Vanish.spectatet.get(i)));
+		}
 		
 		//Noch nie davor gespielt...:
 		if(!p.hasPlayedBefore()) {

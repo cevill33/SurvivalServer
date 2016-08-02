@@ -35,6 +35,7 @@ public class NickNamer {
     public static List<String> changeing = new ArrayList<>();
     public static HashMap<CraftPlayer,Location> loc = new HashMap<>();
     public static HashMap<CraftPlayer,Double> health = new HashMap<>();
+    public static ArrayList<String> genickt = new ArrayList<>();
 
     public static void change(CraftPlayer cp, String playerskin, String playername){
         GameProfile skingp = cp.getProfile();
@@ -79,6 +80,7 @@ public class NickNamer {
         }.runTaskLater(Main.main,2);
         Player p = cp.getPlayer();
         p.setPlayerListName(playername);
+        genickt.add(p.getName());
     }
     public static void sendPackage(Packet packet){
         for(Player all : Bukkit.getOnlinePlayers()){
@@ -107,5 +109,6 @@ public class NickNamer {
             change((CraftPlayer)p,p.getName(), p.getName());
             p.sendMessage(Main.prefix + "Alle Spieler sehen dich wieder so wie du bist!");
         }
+        genickt.remove(p.getName());//TODO ist p.getName(); der name des Spielers oder des gespielten Players?
     }
 }

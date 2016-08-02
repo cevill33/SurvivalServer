@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.client.model.Filters;
+import me.survival.methods.NickNamer;
 import me.survival.nation.Nation;
 import me.survival.npc.King;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
@@ -76,7 +77,7 @@ public class Listener_PlayerChatEvent implements Listener {
 
 
 		//LVL1 CHECK
-		if(p.getLevel() <= 1) {
+		if(p.getLevel() <= 1 && !NickNamer.genickt.contains(p.getName())) {//TODO check ob es geht
 			e.setCancelled(true);
 			p.sendMessage(Main.prefix + "§4Du darfst noch nicht schreiben:");
 			p.sendMessage("");
@@ -87,22 +88,6 @@ public class Listener_PlayerChatEvent implements Listener {
 			return;
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
