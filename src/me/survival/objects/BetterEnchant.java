@@ -165,7 +165,7 @@ public class BetterEnchant {
 		
 		ItemStack forenchant = inv.getItem(0);
 		if(forenchant == null) {
-			p.sendMessage(prefix + "§cDu musst ein Item in den ersten Slot geben um etwas zu enchanten!");
+			p.sendMessage(prefix + "§cDu musst ein Item in den ersten Slot geben um etwas zu Enchanten!");
 			return;
 		}
 		

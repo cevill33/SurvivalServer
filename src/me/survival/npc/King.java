@@ -14,50 +14,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by mariusk on 16.06.2016.
  */
 public class King {
 
-    public static List<String> descn1 = new ArrayList<>();
-    public static List<String> descn2 = new ArrayList<>();
-    static {
-        King.descn1.add("§7Das ganze ist nur");
-        King.descn1.add("§7Test. Weuk....");
-        King.descn2.add("§7Das ganze ist nur");
-        King.descn2.add("§7Test. Weuk....");
-    }
-    
     public static void openNationCooseGui(Player p) {
         Inventory inv = p.getServer().createInventory(null,27,"§aWähle deine Nation/Rasse!");
-        ItemBuilder b1 = new ItemBuilder(Material.PAPER).setDiplayname(Nation.N1.getName());
-        ItemBuilder b2 = new ItemBuilder(Material.PAPER).setDiplayname(Nation.N2.getName());
-
-        DBVetox vetox = new DBVetox();
-
-        //Perk for N1
-        if(vetox.getNation1Player() < vetox.getNation2Player()) {
-            List list = Nation.N1.getDesc();
-            list.add("§fHier bekommst du §6100Coins§f!");
-            b1.setLoreInArrayList(list);
-            b2.setLoreInArrayList(Nation.N2.getDesc());
-        }
-
-        //Perk for N2
-        if(vetox.getNation2Player() < vetox.getNation1Player()) {
-            List list = Nation.N2.getDesc();
-            list.add("§fHier bekommst du §6100Coins§f!");
-            b2.setLoreInArrayList(list);
-            b1.setLoreInArrayList(Nation.N1.getDesc());
-        }
-
-
-        inv.setItem(12, b1.build());
-        inv.setItem(14, b2.build());
-        inv.setItem(26, new ItemBuilder(Material.BARRIER).setDiplayname("§4Schließen.").build());
+        inv.setItem(12, new ItemBuilder(Material.PAPER).setDiplayname(Nation.N1.getName()).build());
+        inv.setItem(14, new ItemBuilder(Material.PAPER).setDiplayname(Nation.N2.getName()).build());
+        inv.setItem(26, new ItemBuilder(Material.BARRIER).setDiplayname(Nation.N2.getName()).build());
         p.openInventory(inv);
     }
 
@@ -68,15 +34,12 @@ public class King {
             new DBVetoxPlayer(p.getUniqueId().toString()).setObject("nation", n.getName());
             VetoxPlayer.stats.get(p.getUniqueId()).setNation(n.getName());
             DBVetox vetox = new DBVetox();
-            vetox.setNation1Player(vetox.getNation1Player() + 1);
-
             p.sendMessage(Nation.prefix + "§aDu bist nun ein Mitglied der Nation §f" + n.getName() + "§a!");
 
             if(vetox.getNation1Player() < vetox.getNation2Player()) {
                 MoneyManager.addMoney(p.getUniqueId(), 100);
                 p.sendMessage(Nation.prefix + "§aZusätzlich bekommst du §2100Coins§a.");
             }
-            p.closeInventory();
             return;
         }
 
@@ -85,14 +48,12 @@ public class King {
             new DBVetoxPlayer(p.getUniqueId().toString()).setObject("nation", n.getName());
             VetoxPlayer.stats.get(p.getUniqueId()).setNation(n.getName());
             DBVetox vetox = new DBVetox();
-            vetox.setNation2Player(vetox.getNation2Player() + 1);
             p.sendMessage(Nation.prefix + "§aDu bist nun ein Mitglied der Nation §f" + n.getName() + "§a!");
 
             if(vetox.getNation2Player() < vetox.getNation1Player()) {
                 MoneyManager.addMoney(p.getUniqueId(), 100);
                 p.sendMessage(Nation.prefix + "§aZusätzlich bekommst du §2100Coins§a.");
             }
-            p.closeInventory();
             return;
         }
 
@@ -104,7 +65,7 @@ public class King {
 
     public static void openKingGUI(Player p) {
         Inventory inv = Bukkit.getServer().createInventory(null, 27, "§aDein König:");
-
+        
     }
 
     public static void onKingKlick(Player p, String kingname) {
@@ -155,7 +116,7 @@ public class King {
         } else {
 
             //If Player is in a Nation:
-            NPCManager.sendNPC(p, 1, 1, kingname, "Hi ich bin der König von diesem Land, zurzeit kann ich nur mit dir reden, aber heute wird ein kampf um 19:00 stattfinden!");
+
         }
     }
 

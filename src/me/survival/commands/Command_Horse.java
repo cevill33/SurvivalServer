@@ -52,7 +52,7 @@ public class Command_Horse implements CommandExecutor {
 			//Code
 			cooldown.add(p.getName());
 			Location up = new Location(p.getWorld(), p.getLocation().getX(), 255, p.getLocation().getZ());
-			if(up.getBlock().getType().equals(Material.BARRIER)) {
+			if(up.getBlock().getType().equals(Material.BARRIER) || p.hasPermission("vetox.rideall")) {
 				Horse horse = (Horse) p.getWorld().spawnEntity(p.getLocation(), EntityType.HORSE);
 				horse.setAdult();
 				horse.setCarryingChest(false);
@@ -75,7 +75,7 @@ public class Command_Horse implements CommandExecutor {
 						}
 							
 						Location up = new Location(p.getWorld(), p.getLocation().getX(), 255, p.getLocation().getZ());		
-						if(!up.getBlock().getType().equals(Material.BARRIER)) {
+						if(!up.getBlock().getType().equals(Material.BARRIER) && !p.hasPermission("vetox.rideall")) {
 							horse.remove();
 							p.sendMessage(Main.prefix + "§cDu kannst ein Reittier nur auf einer Straße reiten!");
 							Bukkit.getScheduler().cancelTask(count[0]);

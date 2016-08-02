@@ -33,7 +33,10 @@ public class Listener_PlayerDeathEvent implements Listener {
 			VetoxPlayer vK = VetoxPlayer.stats.get(killer.getUniqueId());
 			vK.setKills(vK.getKills() + 1);
 		}
-		
+		if(Listener_PlayerInteractEvent.chair.get(p)!=null){
+			Listener_PlayerInteractEvent.chair.get(p).remove();
+			Listener_PlayerInteractEvent.chair.put(p,null);
+		}
 		
 		
 	}

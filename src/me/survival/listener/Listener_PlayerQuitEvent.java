@@ -31,7 +31,10 @@ public class Listener_PlayerQuitEvent implements Listener {
 			horse.remove();
 			Command_Horse.ridemap.remove(p.getName());
 		}
-		
+		if(Listener_PlayerInteractEvent.chair.get(p)!=null){
+			Listener_PlayerInteractEvent.chair.get(p).remove();
+			Listener_PlayerInteractEvent.chair.put(p,null);
+		}
 		
 		
 		
