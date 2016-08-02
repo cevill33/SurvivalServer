@@ -25,8 +25,4 @@ public class Listener_PlayerCommandPreprocessEvent implements Listener {
 			}
 		}
 	}
-	
-	
-	
-	
 }
