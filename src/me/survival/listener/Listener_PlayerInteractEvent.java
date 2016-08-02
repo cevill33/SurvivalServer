@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class Listener_PlayerInteractEvent implements Listener {
 
-	public static HashMap<Player,Entity> chair = new HashMap<>();
+	public static HashMap<String,Entity> chair = new HashMap<>();
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
@@ -49,7 +49,7 @@ public class Listener_PlayerInteractEvent implements Listener {
 				if(b.getLocation().subtract(0,2,0).getBlock().getType() == Material.COAL_BLOCK){
 					Arrow arrow = (Arrow) p.getWorld().spawnEntity(b.getLocation().add(0.5,0,0.5), EntityType.ARROW);
 					arrow.setPassenger(p);
-					chair.put(p,arrow);
+					chair.put(p.getName(),arrow);
 				}
 			}
 			

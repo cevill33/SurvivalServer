@@ -2,6 +2,9 @@ package me.survival.listener;
 
 import me.survival.commands.Command_Horse;
 import me.survival.commands.Command_Vanish;
+import me.vetoxapi.objects.AntiCheat;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,13 +35,25 @@ public class Listener_PlayerQuitEvent implements Listener {
 			horse.remove();
 			Command_Horse.ridemap.remove(p.getName());
 		}
-		if(Listener_PlayerInteractEvent.chair.get(p)!=null){
-			Listener_PlayerInteractEvent.chair.get(p).remove();
-			Listener_PlayerInteractEvent.chair.put(p,null);
+
+		//Chair:
+		Entity entity = Listener_PlayerInteractEvent.chair.get(p.getName());
+		if(entity != null){
+			entity.remove();
+			Listener_PlayerInteractEvent.chair.remove(p.getName());
 		}
+
+		//Vanish:
 		if(Command_Vanish.spectatet.contains(p.getName())){
 			Command_Vanish.spectatet.remove(p.getName());
+			AntiCheat.removeFlying(p, "vanish");
+			for(Player all : Bukkit.getOnlinePlayers()) {
+				all.showPlayer(p);
+			}
 			p.setAllowFlight(false);
+		}
+		for(String invanish : Command_Vanish.spectatet) {
+			p.showPlayer(Bukkit.getPlayer(invanish));
 		}
 		
 		
