@@ -38,11 +38,12 @@ public class Listener_PlayerChatEvent implements Listener {
 		Player p = e.getPlayer();
 		String msg = e.getMessage();
 		String tolowmsg = msg.toLowerCase();
-		if(King.beschwerdeeinreichen.contains(p.getName())){
+
+		/*if(King.beschwerdeeinreichen.contains(p.getName())){
 			King.beschwerden.add(msg);
 			King.beschwerdeeinreichen.remove(p.getName());
 			p.sendMessage(Nation.prefix + "Du hast die Beschwerde erfolgreich eingereicht!");
-		}
+		}*/
 		
 		//Ask...
 		if(msg.startsWith("?") && msg.length() > 3) {

@@ -6,6 +6,7 @@ import me.vetoxapi.api.BoardManager;
 import me.vetoxapi.methods.NationPoints;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,9 +62,10 @@ public class Listener_PlayerDeathEvent implements Listener {
 			vK.setKills(vK.getKills() + 1);
 		}
 
-		if(Listener_PlayerInteractEvent.chair.get(p)!=null){
-			Listener_PlayerInteractEvent.chair.get(p).remove();
-			Listener_PlayerInteractEvent.chair.put(p,null);
+		Entity entity = Listener_PlayerInteractEvent.chair.get(p.getName());
+		if(entity != null){
+			entity.remove();
+			Listener_PlayerInteractEvent.chair.remove(p.getName());
 		}
 		
 		

@@ -19,9 +19,10 @@ public class Listener_PlayerCommandPreprocessEvent implements Listener {
 			title.send(e.getPlayer());
 			e.setCancelled(true);
 		}
-		if(cmd.startsWith("/msg")||cmd.startsWith("/tell")||cmd.startsWith("/rules")||cmd.startsWith("/regeln")||cmd.startsWith("/r")||cmd.startsWith("/bewerben")){
-			for(int i = 0;i< Command_Spy.spy.size();i++){
-				Bukkit.getPlayer(Command_Spy.spy.get(i)).sendMessage("§7" + e.getPlayer() + "§8 ->  §7" + cmd);
+
+		if(cmd.startsWith("/msg")||cmd.startsWith("/tell") || cmd.startsWith("/r")||cmd.startsWith("/pl") || cmd.startsWith("m")){
+			for(String spy : Command_Spy.spy){
+				Bukkit.getPlayer(spy).sendMessage(Command_Spy.prefix  + "§7" + e.getPlayer().getDisplayName() + "§8 ->  §7" + cmd);
 			}
 		}
 	}
