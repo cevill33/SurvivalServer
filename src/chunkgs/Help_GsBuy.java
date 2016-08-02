@@ -75,7 +75,7 @@ public class Help_GsBuy {
 						p.sendMessage(Main.gsprefix + "§cDu hast zuwenig Coins. Das Gs kostet §7" + price + " §cCoins!");
 					}
 				} else {
-					p.sendMessage(Main.gsprefix + "§cDu kannst hier kein Gs kaufen weil sich eine Stra§e neben dir befindet!");
+					p.sendMessage(Main.gsprefix + "§cDu kannst hier kein Gs kaufen weil sich eine Straße neben dir befindet!");
 				}
 			} else {
 				p.sendMessage(Main.gsprefix + "§cJemand hat sich hier bereits ein Gs gekauft!");

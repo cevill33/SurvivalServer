@@ -168,6 +168,10 @@ public class Command_Gs implements CommandExecutor {
 		//Price , Next
 		if(args[0].equalsIgnoreCase("next") || args[0].equalsIgnoreCase("price")) {
 			if(args.length == 1) {
+				if(ChunkManager.getChunks(p.getUniqueId().toString()) == null) {
+					p.sendMessage(Main.gsprefix + "§7Das nächste Gs wird dich §3250§7 Coins kosten!");
+					return true;
+				}
 				int price =  ChunkManager.getPrice(ChunkManager.getChunks(p.getUniqueId().toString()).size() + 1);
 				p.sendMessage(Main.gsprefix + "§7Das nächste Gs wird dich §3" + price + "§7 Coins kosten!");
 				return true;
