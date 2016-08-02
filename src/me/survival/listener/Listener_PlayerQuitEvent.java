@@ -1,6 +1,7 @@
 package me.survival.listener;
 
 import me.survival.commands.Command_Horse;
+import me.survival.commands.Command_Vanish;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,7 +36,10 @@ public class Listener_PlayerQuitEvent implements Listener {
 			Listener_PlayerInteractEvent.chair.get(p).remove();
 			Listener_PlayerInteractEvent.chair.put(p,null);
 		}
-		
+		if(Command_Vanish.spectatet.contains(p.getName())){
+			Command_Vanish.spectatet.remove(p.getName());
+			p.setAllowFlight(false);
+		}
 		
 		
 	}

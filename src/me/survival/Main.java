@@ -1,10 +1,6 @@
 package me.survival;
 
 
-
-
-
-
 import me.survival.commands.*;
 import me.survival.elite.*;
 import me.survival.listener.*;
@@ -12,7 +8,6 @@ import me.survival.methods.*;
 import me.survival.objects.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import chunkgs.ChunkManager;
 import chunkgs.Command_Gs;
@@ -32,10 +27,22 @@ import worldmanager.FarmworldEuropia;
 import worldmanager.Mainworld;
 import worldmanager.WorldManager;
 
-import java.util.HashMap;
-
 public class Main extends JavaPlugin {
-	
+
+	/*
+
+
+	- Manche leute wurden bei der Quest zum Spawn tp.
+	- Man kann mit der Magic Thor NPCs weg schleudern.
+	- Man kann Elite Magiçs nutzen
+	- Bei manchen leuten sind die items komplett weg.
+	- Man muss manchmal ein Reload machen da man nicht immer zu dem Spawn tp wird!
+
+
+	 */
+
+
+
 	//public static MySQL mysql;
 	public static final String prefix = "§8[§3Vetox§8] ";
 	public static final String gsprefix = "§8[§bGs§8] ";
@@ -67,7 +74,7 @@ public class Main extends JavaPlugin {
 		bundle.add(new Listener_PlayerExpChangeEvent());
 		bundle.add(new Listener_PlayerRespawnEvent());
 		bundle.add(new Listener_PlayerToggleSneakEvent());
-		bundle.add(new Listner_PlayerCommandPreprocessEvent());
+		bundle.add(new Listener_PlayerCommandPreprocessEvent());
 		bundle.add(new Listener_SignKlickEvent());
 		bundle.add(new Listener_SongEndEvent());
 		bundle.add(new Listener_RecurcePack());
@@ -158,6 +165,8 @@ public class Main extends JavaPlugin {
 		getCommand("sethome").setExecutor(new Command_SetHome());
 		getCommand("liquidclean").setExecutor(new Command_LiquidClean());
 		getCommand("nick").setExecutor(new Command_Nick());
+		getCommand("vanish").setExecutor(new Command_Vanish());
+		getCommand("spy").setExecutor(new Command_Spy());
 	}
 	
 

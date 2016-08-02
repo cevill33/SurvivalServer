@@ -3,7 +3,9 @@ version: 1.4
 author: cevill33
 main: me.survival.Main
 commands:
-
+  vanish:
+     aliases: [v]
+  spy:
   gs:
   ride:
      aliases: [horse]
