@@ -23,9 +23,11 @@ public class Thor1 {
         for(Entity enitiy : p.getNearbyEntities(3, 1, 3)) {
 
             if(enitiy instanceof Player) {
-                ((Player) enitiy).playSound(p.getLocation(), Sound.EXPLODE, 1, 1);
-                enitiy.setVelocity(enitiy.getLocation().getDirection().multiply(-1.5D).setY(1));
-                AntiCheat.addFlying(p, "thorkick");
+                if(!enitiy.hasMetadata("NPC")) {
+                    ((Player) enitiy).playSound(p.getLocation(), Sound.EXPLODE, 1, 1);
+                    enitiy.setVelocity(enitiy.getLocation().getDirection().multiply(-1.5D).setY(1));
+                    AntiCheat.addFlying(p, "thorkick");
+                }
             }
 
 

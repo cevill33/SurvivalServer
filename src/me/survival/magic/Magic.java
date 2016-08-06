@@ -9,7 +9,7 @@ public enum Magic {
 
 	
 	
-	
+
 	SPEED1(MagicType.NORMAL, "Speed I", 0, Material.SUGAR, 0, Arrays.asList("§7Diese Magie gibt dir für", "§710 Sekunden Speed 1", "§3Mana: §745"), "me.survival.magic.magics.Speed1", 0, 0),
 	BLITZ1(MagicType.NORMAL, "Blitz I", 200, Material.BLAZE_ROD, 0,Arrays.asList("§7Diese Magie schießt einen Blitz", "§7in die Richtung wo du hinschaust!", "§3Mana: §740"), "me.survival.magic.magics.Blitz1", 1, 1),
 	HEALER1(MagicType.NORMAL, "Healer I", 150, Material.INK_SACK, 1, Arrays.asList("§7Diese Magie heilt dich", "§7und fällt ein bisschen","§7dein Essen auf!", "§3Mana: §745"), "me.survival.magic.magics.Healer1", 2, 2),

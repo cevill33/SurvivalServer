@@ -6,13 +6,13 @@ import java.net.URL;
 
 public class UUIDConverter {
 
-    public static String getValue(String input) {
+    /*public static String getValue(String input) {
 	try {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new URL("http://api.ketrwu.de/" + input + "/").openStream()));
 		return bufferedReader.readLine();
 	} catch (Exception e) { }
 	return null;
-}
+}*/
 	
 	
 	
