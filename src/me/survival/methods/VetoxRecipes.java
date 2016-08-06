@@ -27,6 +27,15 @@ public class VetoxRecipes {
 		
 		
 	}
+	public static ItemStack superhoe = new ItemBuilder(Material.DIAMOND_HOE).setDiplayname("§bSuperHoe").setLore(new String[]{"§aRechtsklick","§7auf eine Pflanze"}).build();
+	public static void addSuperHoeRecipe(){
+		ShapedRecipe sp = new ShapedRecipe(superhoe);
+		sp.shape("ADF", "AEA", "AEA");
+		sp.setIngredient('E', Material.IRON_INGOT);
+		sp.setIngredient('F', Material.FLINT);
+		sp.setIngredient('D', Material.DIAMOND);
+		Bukkit.addRecipe(sp);
+	}
 
 
 	/*

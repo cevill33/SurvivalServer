@@ -2,6 +2,7 @@ package chunkgs;
 
 import java.io.File;
 
+import me.survival.api.UUIDFetcher;
 import org.bukkit.Chunk;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -12,7 +13,7 @@ import me.survival.api.UUIDConverter;
 public class Help_ChunkRemove {
 
 	public static void execute(Player p, String friend) {
-		String fid = UUIDConverter.getValue(friend);
+		String fid = UUIDFetcher.getUUID(friend).toString();//TODO Testen
 		String id = p.getUniqueId().toString();
 		Chunk c = p.getLocation().getChunk();
 		BetterChunk bC = BetterChunk.chunkworld.get(c.getWorld().getName() + ":" + c.getX() + ":" + c.getZ());

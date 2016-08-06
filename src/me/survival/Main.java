@@ -112,6 +112,7 @@ public class Main extends JavaPlugin {
 		VillagerShop.onEnable();
 		Radio.onDisable(); // ???
 		VetoxRecipes.addFireBallRecipe();
+		VetoxRecipes.addSuperHoeRecipe();
 		Bukkit.getConsoleSender().sendMessage("§3VetoxSurvival akitiviert!");
 		ChunkManager.onEnable();
 		ItemClear.onEnable();
