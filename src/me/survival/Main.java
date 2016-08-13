@@ -32,12 +32,10 @@ public class Main extends JavaPlugin {
 	/*
 
 
-	- Manche leute wurden bei der Quest zum Spawn tp.
-	- Man kann Elite Magiçs nutzen
-	- Bei manchen leuten sind die items komplett weg.
-	- Man muss manchmal ein Reload machen da man nicht immer zu dem Spawn tp wird!
-
-
+	- BackPack
+	- Eigene villager show machen
+	- bei /ride andere pferde arten
+	
 	 */
 
 

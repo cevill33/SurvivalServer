@@ -141,7 +141,6 @@ public class VillagerShop {
 
 	}
 	
-	
 	public static void onEnable() {
 		Location locrecurce = new Location( Bukkit.getWorld("Mainworld"), -266.5, 41, 435.5);
 		locrecurce.setYaw(90f);
