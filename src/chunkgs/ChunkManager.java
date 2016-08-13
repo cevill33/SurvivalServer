@@ -38,7 +38,35 @@ public class ChunkManager {
 				f3.mkdir();
 		}
 	}
-	
+
+	public static void deleteChunckFromFiles(BetterChunk bC) {
+		File owner = new File("plugins/gs/players/" + bC.getOwneruuid() + ".yml");
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(owner);
+		List<String> list = cfg.getStringList("chunks");
+		if(list == null) return;
+		String entry = bC.getWorld() + ":" + bC.getX() + ":" + bC.getZ();
+		if(!list.contains(entry)) System.out.println("Entry is not in List");
+		if(list.contains(entry)) list.remove(entry);
+		cfg.set("chunks", list);
+		save(owner);
+
+		File chunkfile = new File("plugins/gs/chunks/" + bC.getX() + ":" + bC.getZ() + ":" + bC.getWorld() + ".yml");
+		if(chunkfile.exists()) {
+			chunkfile.delete();
+			return;
+		}
+		System.out.println("File nicht gefunden!");
+	}
+
+	private static void save(File file) {
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+		try {
+			cfg.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	@SuppressWarnings("static-access")
 	public static void loadAllChunks() {

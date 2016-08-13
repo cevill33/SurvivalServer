@@ -23,7 +23,8 @@ import java.util.Random;
 public class Listener_PlayerInteractEvent implements Listener {
 
 	public static HashMap<String,Entity> chair = new HashMap<>();
-	
+	private static ItemStack i = new ItemBuilder(Material.DIAMOND_HOE).setDiplayname("§bSuperHoe").setLore(new String[]{"§aRechtsklick","§7auf eine Pflanze"}).build();
+
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
@@ -82,8 +83,7 @@ public class Listener_PlayerInteractEvent implements Listener {
 			}
 
 			//SuperHoe
-			ItemStack i = new ItemBuilder(Material.DIAMOND_HOE).setDiplayname("§bSuperHoe").setLore(new String[]{"§aRechtsklick","§7auf eine Pflanze"}).build();
-			if(e.getItem().getType().equals(i.getType()) && e.getItem().getItemMeta().equals(i.getItemMeta())){
+			if(e.getItem().isSimilar(i)){
 				if(b == null) return;
 
 				if(GsAllowedWorld.worlds.containsKey(p.getWorld().getName()) && worldmanager.WorldManager.protectedworlds.contains(p.getWorld().getName())) return;
@@ -93,6 +93,11 @@ public class Listener_PlayerInteractEvent implements Listener {
 						e.setCancelled(true);
 						Random rdm = new Random();
 						int zufall = rdm.nextInt(4);
+						short durability = e.getItem().getDurability();
+						if(durability == 0) e.getItem().setType(Material.AIR);
+						durability--;
+						if(durability > 0) e.getItem().setDurability(durability);
+
 						if(b.getType().equals(Material.CARROT)){
 							for(int ii = 0;ii<zufall;ii++) {
 								p.getWorld().dropItem(b.getLocation(), new ItemStack(Material.CARROT_ITEM));
