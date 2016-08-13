@@ -178,7 +178,7 @@ public class MagicManager {
 		if(magiclist.contains(magic)) {
 			MagicManager.magic.put(p.getName(), magic.getClassName());
 			p.playSound(p.getLocation(), Sound.CHEST_CLOSE, 1, 1);
-			p.sendMessage(prefix + "§7Du hast den Magie §3ausgewählt§7!");
+			p.sendMessage(prefix + "§7Du hast die Magie §3ausgewählt§7!");
 			p.closeInventory();
 		} else {
 			Inventory inv = p.getServer().createInventory(null, 9, "§aMagic Shop:§8 " + slot);

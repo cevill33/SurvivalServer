@@ -124,6 +124,8 @@ public class Listener_PlayerInteractEvent implements Listener {
 				}
 
 			}
+			//Villager shop
+
 
 			//Water & Lava Bucket
 			if(e.getItem().getType().equals(Material.WATER_BUCKET) || e.getItem().getType().equals(Material.LAVA_BUCKET)) {
