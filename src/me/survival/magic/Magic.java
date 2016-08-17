@@ -59,6 +59,15 @@ public enum Magic {
 		return null;
 	}
 
+	public static Magic getByID(int id) {
+		for (Magic m : Magic.values()) {
+			if(id == m.getId()) {
+				return m;
+			}
+		}
+		return null;
+	}
+
 	public String getName() {
 		return name;
 	}

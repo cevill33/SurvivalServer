@@ -2,7 +2,10 @@ package chunkgs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import me.survival.api.UUIDConverter;
+import me.survival.api.UUIDFetcher;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -66,7 +69,7 @@ public class Command_Gs implements CommandExecutor {
 		
 		
 		
-		if(args[0].equalsIgnoreCase("remove") || args[0].equalsIgnoreCase("l§schen")) {
+		if(args[0].equalsIgnoreCase("remove") || args[0].equalsIgnoreCase("löschen")) {
 			if(args.length == 2) {
 				String name = args[1];
 				Help_ChunkRemove.execute(p, name);
@@ -88,6 +91,7 @@ public class Command_Gs implements CommandExecutor {
 				p.sendMessage(" §7- §3/gs price §fZeigt den Preis für das nächste Gs.");
 				p.sendMessage(" §7- §3/gs chunk §fZeigt an von wo bis wo sich der Chunk befindet.");
 				p.sendMessage(" §7- §3/gs list §fZeigt dir all deine Grundstücke.");
+
 			} else {
 				p.sendMessage(Main.gsprefix + "§cSyntax: §7/gs help!");
 				return true;
@@ -105,12 +109,16 @@ public class Command_Gs implements CommandExecutor {
 				if(bC != null) {
 					
 					p.sendMessage(Main.gsprefix + "§3Info:");
-					p.sendMessage("");
-					//Hier Spieler...
-					
-					
-					
-					
+					p.sendMessage(" §bBesitzer: §7" + UUIDFetcher.getName(UUID.fromString(bC.getOwneruuid())));
+					String keine = "";
+					if(bC.getFriends().size() <= 1) keine = " §4Keine";
+					p.sendMessage(" §bFreunde:" + keine);
+					for(String friends : bC.getFriends()) {
+						if(friends.equals("testfreund")) continue;
+						p.sendMessage("   §e- §7" + UUIDFetcher.getName(UUID.fromString(friends)));
+					}
+
+
 					
 				} else {
 					p.sendMessage(Main.gsprefix + "§7Hier ist kein Gs!");
@@ -160,7 +168,38 @@ public class Command_Gs implements CommandExecutor {
 				p.sendMessage(Main.gsprefix + "§cSyntax: §7/gs list!");
 					
 			}
-		} 
+		}
+
+		//AdminDelete
+		if(args[0].equalsIgnoreCase("forcedelete")) {
+			if(!p.hasPermission("vetox.gs.force.delete")) {
+				p.sendMessage(Main.gsprefix + "§cDu hast keine Recht diesen Befehl zu benutzen.");
+				return true;
+			}
+
+			if(args.length == 1) {
+
+				Location loc = p.getLocation();
+				Chunk c = loc.getChunk();
+				BetterChunk bC = BetterChunk.chunkworld.get(c.getWorld().getName() + ":" + c.getX() + ":" + c.getZ());
+
+				if(bC == null) {
+					p.sendMessage(Main.gsprefix + "§cHier gibt es kein Gs!");
+					return true;
+				}
+
+				BetterChunk.chunkworld.remove(c.getWorld().getName() + ":" + c.getX() + ":" + c.getZ());
+				ChunkManager.deleteChunckFromFiles(bC);
+				p.sendMessage(Main.gsprefix + "§aDas Gs wurde gelöscht!");
+
+
+
+			} else {
+				p.sendMessage(Main.gsprefix + "§cSyntax: §7/gs forcedelete!");
+				return true;
+			}
+
+		}
 			
 		
 		

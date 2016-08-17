@@ -2,6 +2,8 @@ package me.survival.listener;
 
 import me.survival.commands.Command_Spy;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -22,7 +24,12 @@ public class Listener_PlayerCommandPreprocessEvent implements Listener {
 
 		if(cmd.startsWith("/msg")||cmd.startsWith("/tell") || cmd.startsWith("/r")||cmd.startsWith("/pl") || cmd.startsWith("m")){
 			for(String spy : Command_Spy.spy){
-				Bukkit.getPlayer(spy).sendMessage(Command_Spy.prefix  + "§7" + e.getPlayer().getDisplayName() + "§8 ->  §7" + cmd);
+				Player tosend = Bukkit.getPlayer(spy);
+				if(tosend == null) {
+					Command_Spy.spy.remove(spy);
+					continue;
+				}
+				tosend.sendMessage(Command_Spy.prefix  + "§7" + e.getPlayer().getDisplayName() + "§8 ->  §7" + cmd);
 			}
 		}
 	}

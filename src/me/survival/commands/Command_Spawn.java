@@ -65,17 +65,11 @@ public class Command_Spawn implements CommandExecutor{
 				@Override
 				public void run() {
 					if(high.get(0) == 0) {
-						try{
-						p.teleport(Main.spawn);
+						p.teleport(Bukkit.getWorld("Mainworld").getSpawnLocation());
 						ActionBar.sendActionBar(p, "§3Du wurdest zum §fSpawn §3teleportiert!");
 						Bukkit.getScheduler().cancelTask(ID[0]);
 						map.remove(p.getName());
-						return; } catch(Exception ex) {
-							Main.spawn.getChunk().load();
-							p.sendMessage(Main.prefix + "§cError: Der Spawn konnte nicht geladen werden.");
-							p.sendMessage(Main.prefix + "§cGebe /spawn bitte erneut ein!");
-							return;
-						}
+						return;
 					}
 					
 					

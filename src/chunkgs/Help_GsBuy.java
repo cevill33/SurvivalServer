@@ -21,7 +21,7 @@ public class Help_GsBuy {
 			if(!BetterChunk.chunkworld.containsKey(c.getWorld().getName() + ":" + c.getX() + ":" + c.getZ())) {
 				BuilderRegion bR = ChunkManager.getBuilderRegion(c);
 				if(bR != null) {
-					int lvl = VetoxPlayer.stats.get(p.getUniqueId()).getLvl();
+					int lvl = 0; //VetoxPlayer.stats.get(p.getUniqueId()).getLvl(); //Nicht get Lvl sondern Builder Level!!!
 					if(lvl < bR.getRang()) {
 						if(bR.getRang() == 11) {
 							if(!p.hasPermission("vetox.allbuy")) {
@@ -75,7 +75,7 @@ public class Help_GsBuy {
 						p.sendMessage(Main.gsprefix + "§cDu hast zuwenig Coins. Das Gs kostet §7" + price + " §cCoins!");
 					}
 				} else {
-					p.sendMessage(Main.gsprefix + "§cDu kannst hier kein Gs kaufen weil sich eine Straße neben dir befindet!");
+					p.sendMessage(Main.gsprefix + "§cDu kannst hier kein Gs kaufen ,weil sich eine Straße neben dir befindet!");
 				}
 			} else {
 				p.sendMessage(Main.gsprefix + "§cJemand hat sich hier bereits ein Gs gekauft!");

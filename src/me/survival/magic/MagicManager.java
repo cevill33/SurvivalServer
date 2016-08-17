@@ -49,7 +49,7 @@ public class MagicManager {
 		}
 		mana.put(p.getName(), 100);
 		for(int i : list) {
-			magics.add(Magic.values()[i]);
+			magics.add(Magic.getByID(i));
 		}
 		mymagics.put(p.getName(), magics);
 		return;
