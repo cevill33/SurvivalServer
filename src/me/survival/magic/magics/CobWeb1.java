@@ -19,7 +19,7 @@ public class CobWeb1 {
 		//Hier Kommt der Code:
 		
 		@SuppressWarnings("deprecation")
-		FallingBlock block = p.getWorld().spawnFallingBlock(p.getLocation(), Material.WEB, (byte) 1);
+		FallingBlock block = p.getWorld().spawnFallingBlock(p.getLocation().add(0,1,0) ,Material.WEB, (byte) 1);
 		block.setVelocity(p.getLocation().getDirection().multiply(2D));
 		p.playSound(p.getLocation(), Sound.CHICKEN_EGG_POP, 3F, 1);
 		

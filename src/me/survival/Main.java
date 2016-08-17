@@ -35,7 +35,7 @@ public class Main extends JavaPlugin {
 	- BackPack
 	- Eigene villager show machen
 	- bei /ride andere pferde arten
-	
+
 	 */
 
 

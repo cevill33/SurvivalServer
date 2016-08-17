@@ -7,6 +7,8 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 /**
  * Created by mariusk on 07.06.2016.
@@ -35,5 +37,6 @@ public class FlyingRocket {
         firework.setFireworkMeta(meta);
         firework.setPassenger(p);
         AntiCheat.addFlying(p, "rocket", 20*7);
+        p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,20,5));
     }
 }
