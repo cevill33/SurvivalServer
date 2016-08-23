@@ -25,7 +25,11 @@ public class Medic {
 		final int[] ID = new int[1];
 		MagicManager.startLoadinMana(p);
 		//Hier Kommt der Code:
-
+		for(int i = 1;i<50;i++){
+			if(p.getLocation().add(0,i,0).getBlock().equals(Material.ITEM_FRAME)){
+				return;
+			}
+		}
 		p.sendMessage(Main.prefix + "§7Ein Heilpacket ist unterwegst.");
 		Location loc = p.getTargetBlock((Set<Material>) null, 100).getLocation();
 		loc.setY(255);

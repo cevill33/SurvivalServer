@@ -47,7 +47,7 @@ public enum Swords {
 
     LVL10(10, new ItemBuilder(Material.IRON_SWORD).setDiplayname("meta").addEnchantment(Enchantment.DAMAGE_ALL, 5).
             addEnchantment(Enchantment.LOOT_BONUS_MOBS, 2).build(),
-            Arrays.asList("§6AufragsName: §fVerzaubern", "§7Bringe mit 32 Enchanter ;D!"));
+            Arrays.asList("§6AufragsName: §fVerzaubern", "§7Bringe mir 32 Enchanter ;D!"));
 
 
 

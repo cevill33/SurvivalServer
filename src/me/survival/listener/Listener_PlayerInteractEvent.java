@@ -2,6 +2,7 @@ package me.survival.listener;
 
 import me.survival.Main;
 import me.survival.api.ItemBuilder;
+import me.survival.methods.VetoxRecipes;
 import me.survival.nation.Nation;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -30,7 +31,10 @@ public class Listener_PlayerInteractEvent implements Listener {
 		Player p = e.getPlayer();
 		String id = p.getUniqueId().toString();
 		Block b = e.getClickedBlock();
-
+		if(p.getItemInHand().equals(VetoxRecipes.fireball)){
+			e.setCancelled(true);
+			return;
+		}
 		if(e.getClickedBlock() != null) {
 			
 //			if(b.getType().equals(Material.ANVIL)) {
@@ -38,7 +42,6 @@ public class Listener_PlayerInteractEvent implements Listener {
 //				e.setCancelled(true);
 //				return;
 //			}
-			
 			if(b.getType() == Material.ENCHANTMENT_TABLE) {
 				if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 					e.setCancelled(true);

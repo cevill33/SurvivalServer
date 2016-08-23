@@ -20,7 +20,7 @@ public class  Command_Head implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         if (p.hasPermission("vetox.head")) {
-            Inventory inv = p.getServer().createInventory(null,44,"§aHeads");
+            Inventory inv = p.getServer().createInventory(null,45,"§aHeads");
             inv.setItem(0, new ItemBuilder(Material.DIAMOND_ORE).setDiplayname("§6Head").build());
             inv.setItem(1, new ItemBuilder(Material.EMERALD_ORE).setDiplayname("§6Head").build());
             inv.setItem(2, new ItemBuilder(Material.LAPIS_ORE).setDiplayname("§6Head").build());

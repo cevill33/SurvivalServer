@@ -5,8 +5,10 @@ import me.survival.elite.Command_Head;
 import me.survival.methods.NickNamer;
 import me.survival.nation.NationManager;
 import me.survival.npc.King;
+import me.survival.usershop.UserShop;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.*;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +29,8 @@ import me.survival.objects.Sword;
 import me.survival.objects.TravelBallon;
 import me.survival.shop.VillagerShop;
 
+import java.io.File;
+
 public class Listener_InventoryClickEvent implements Listener {
 
 
@@ -40,7 +44,25 @@ public class Listener_InventoryClickEvent implements Listener {
 		//Zum Registrieren eines Inventars immer mit §a beginnen!
 
 		if(name.startsWith("§a")) {
-
+			//UserShop
+			if(name.startsWith("§aUserShop §7| §8")){
+				String loc = name.replace("§aUserShop §7| §8","");
+				UserShop.onClickShop(p,loc,current);
+				return;
+			}
+			//User Shop Accept menue
+			if(name.startsWith("§aKaufen?")){
+				UserShop.acceptitemslot.put(p.getName(),e.getSlot());
+				UserShop.onClickAcceptmenue(e.getInventory(),current,p);
+			}
+			//UserShop Admin Menue
+			if(name.startsWith("§aUserShop §7AdminMenü ")){
+				UserShop.onClickAdminMenue(p,current,name.replace("§aUserShop §7AdminMenü ",""),e.getSlot());
+			}
+			//UserShop preis
+			if(name.startsWith("Kosten für ")){
+				UserShop.onClickKostenChangeInv(e.getInventory(),current,p);
+			}
 			//Bürgermeister
 			if(name.equals("§aDein König:")){
 				e.setCancelled(true);

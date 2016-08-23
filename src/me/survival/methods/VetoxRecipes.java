@@ -36,6 +36,13 @@ public class VetoxRecipes {
 		sp.setIngredient('D', Material.DIAMOND);
 		Bukkit.addRecipe(sp);
 	}
+	public static ItemStack lether = new ItemBuilder(Material.LEATHER).build();
+	public static void addLeatherRecipe(){
+		ShapedRecipe sp = new ShapedRecipe(lether);
+		sp.shape("RRa", "RRA", "AaA");
+		sp.setIngredient('R', Material.ROTTEN_FLESH);
+		Bukkit.addRecipe(sp);
+	}
 
 
 	/*

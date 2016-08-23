@@ -1,5 +1,6 @@
 package me.survival.listener;
 
+import chunkgs.ChunkManager;
 import me.survival.nation.Nation;
 import me.vetoxapi.objects.VetoxPlayer;
 import org.bukkit.Sound;
@@ -10,6 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import me.survival.commands.Command_Horse;
 import org.bukkit.event.entity.EntityDamageEvent;
+import worldmanager.GsAllowedWorld;
 
 public class Listener_EntityDamageEvent implements Listener {
 
@@ -31,9 +33,12 @@ public class Listener_EntityDamageEvent implements Listener {
 					e.setCancelled(true);
 				}
 			}
+			//Gs fix
+			if(e.getEntityType().equals(EntityType.ARMOR_STAND) || e.getEntityType().equals(EntityType.MINECART_CHEST) || e.getEntityType().equals(EntityType.MINECART)){
+				if(!GsAllowedWorld.worlds.containsKey(p.getWorld().getName()) && !worldmanager.WorldManager.protectedworlds.contains(p.getWorld().getName()))e.setCancelled(true);
 
-
-
+				if(!ChunkManager.isForHimBuildable(p.getUniqueId().toString(), entity.getLocation())) e.setCancelled(true);
+			}
 			//Player
 			if(entity instanceof Player) {
 

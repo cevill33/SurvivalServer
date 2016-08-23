@@ -39,7 +39,7 @@ public class Listener_SongEndEvent implements Listener {
 			if(listening == null) return;
 			for(String playername : listening) {
 				Player p = Bukkit.getPlayer(playername);
-				if(playername != null) {
+				if(playername != null && p != null) {
 					Radio.sp.addPlayer(p);
 					p.sendMessage(Main.prefix + "§7Nun kommt ein anderes §3Lied§7!");
 				}

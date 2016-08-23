@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.client.model.Filters;
+import me.survival.api.ActionBar;
+import me.survival.api.Title;
 import me.survival.methods.NickNamer;
 import me.survival.nation.Nation;
 import me.survival.npc.King;
+import me.survival.usershop.UserShop;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -88,7 +91,18 @@ public class Listener_PlayerChatEvent implements Listener {
 			p.sendMessage("");
 			return;
 			}
+
+			if(UserShop.editadmins.contains(p.getName()) && UserShop.editadmins2.get(p.getName())!=null){
+				if(!msg.equalsIgnoreCase("leave")) {
+					UserShop.addToAdmins(msg, UserShop.editadmins2.get(p.getName()));
+					ActionBar.sendActionBar(p,"§7Du hast " + msg + " hinzugefügt!");
+				}
+				UserShop.openAdminMenue(p,UserShop.editadmins2.get(p.getName()));
+				UserShop.editadmins.remove(p.getName());
+				UserShop.editadmins2.remove(p.getName());
+			}
 		}
+
 		
 		
 		

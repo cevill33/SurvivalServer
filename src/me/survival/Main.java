@@ -6,8 +6,10 @@ import me.survival.elite.*;
 import me.survival.listener.*;
 import me.survival.methods.*;
 import me.survival.objects.*;
+import me.survival.usershop.UserShop;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import chunkgs.ChunkManager;
 import chunkgs.Command_Gs;
@@ -26,6 +28,9 @@ import mysql.MySQL;
 import worldmanager.FarmworldEuropia;
 import worldmanager.Mainworld;
 import worldmanager.WorldManager;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Main extends JavaPlugin {
 
@@ -83,6 +88,7 @@ public class Main extends JavaPlugin {
 		bundle.add(new Listener_WaterFlowEvent());
 		bundle.add(new Listener_PlayerBucketFillEvent());
 		bundle.add(new Listener_NPCClickEvent());
+		bundle.add(new Listener_SignChangeEvent());
 		lmanager.register("survivalevents", bundle);
 		
 		Ask.registerQuestions();
@@ -111,12 +117,14 @@ public class Main extends JavaPlugin {
 		Radio.onDisable(); // ???
 		VetoxRecipes.addFireBallRecipe();
 		VetoxRecipes.addSuperHoeRecipe();
+		VetoxRecipes.addLeatherRecipe();
 		Bukkit.getConsoleSender().sendMessage("§3VetoxSurvival akitiviert!");
 		ChunkManager.onEnable();
 		ItemClear.onEnable();
 		VetoxRecipes.disableRecipes(this);
 		AFK.registerAFK(this);
 		Nick.registerNicks();
+		UserShop.enableUserShop();
 	}
 	
 
@@ -166,7 +174,13 @@ public class Main extends JavaPlugin {
 		getCommand("vanish").setExecutor(new Command_Vanish());
 		getCommand("spy").setExecutor(new Command_Spy());
 	}
-	
+	public static void saveFile(File file, FileConfiguration cfg){
+		try {
+			cfg.save(file);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 
 	
 	

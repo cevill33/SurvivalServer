@@ -1,6 +1,8 @@
 package me.survival.listener;
 
+import me.survival.usershop.UserShop;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +12,9 @@ import org.bukkit.inventory.ItemStack;
 
 import me.survival.Main;
 import me.survival.methods.InventoryLock;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Listener_InventoryCloseEvent implements Listener {
 	
@@ -50,17 +55,21 @@ public class Listener_InventoryCloseEvent implements Listener {
 				}
  				return;
 			}
-			
-			
-			
-			
+			//UserShop
+			if(name.startsWith("§aUserShop §7AdminMenü ")){
+				String loc = name.replace("§aUserShop §7AdminMenü ","");
+				UserShop.saveItemsInCfg(inv,loc);
+			}
+			//UserShop preis
+			if(name.startsWith("Kosten für ")){
+				String loc = inv.getItem(2).getItemMeta().getLore().get(0).replace("§7","");
+				UserShop.openAdminMenue(p,loc);
+
+			}
+
 			
 		}
-		
-		
-		
-		
-		
+
 		
 		
 	}
