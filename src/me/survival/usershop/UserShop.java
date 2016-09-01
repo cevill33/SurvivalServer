@@ -27,11 +27,11 @@ import java.util.*;
  */
 public class UserShop {
     //TODO wie setze ich die Lore(0:Kosten , 1:Menge im Shop {Info in getItemStackString}) wenn ein neues item in das inventar gesetzt wird?
-    //TODO ==> in inz adden und so weiter... Vl. ein neuer (Button) ==> Neue 9 Slots!?
     public static final BlockFace[] SHOP_FACES = { BlockFace.SELF, BlockFace.DOWN, BlockFace.UP, BlockFace.EAST, BlockFace.NORTH, BlockFace.WEST, BlockFace.SOUTH };
     public static ArrayList<String> editadmins = new ArrayList<>();
-    public static HashMap<String,String> editadmins2 = new HashMap<>();
+    //public static HashMap<String,String> editadmins2 = new HashMap<>();
     public static HashMap<String,Integer> acceptitemslot = new HashMap<>();
+    public static HashMap<String,String> getCfgStringAdmin = new HashMap<>();
     //Boolean
     public static boolean isOwner(Location l,Player p){
         String loc = l.getX() + "_" + l.getY() + "_" + l.getZ() + "_" + l.getWorld().getName();
@@ -307,26 +307,53 @@ public class UserShop {
         cfg.set("admins",admins);
         Main.saveFile(file,cfg);
     }
-    public static void onClickAdminMenue(Player p,ItemStack i,String loc,int itemSlot){
+    public static void onClickAdminMenue(Player p,ItemStack i,int itemSlot){
         if(i.getType().equals(Material.BARRIER)){
             editadmins.add(p.getName());
-            editadmins2.put(p.getName(),loc);
             p.sendMessage(Main.prefix + "§7Bitte schreibe nun den Namen des spielers in den Chat, der rechte auf deinen Shop erhalten soll.");
             p.sendMessage(Main.prefix + "§7Wenn du doch niemanden hinzufügen willst nutze die Nachricht leave.");
             p.getOpenInventory().close();
+        }else if(i.getType().equals(Material.FIRE)){
+            Inventory inv = p.getServer().createInventory(null,InventoryType.DISPENSER,"§aNeues ShopItem");
+            ItemStack im = new ItemBuilder(Material.BARRIER).setDiplayname("").build();
+            inv.setItem(0,im);
+            inv.setItem(1,im);
+            inv.setItem(2,im);
+            inv.setItem(3,new ItemBuilder(Material.WOOL,1,(short)14).setDiplayname("§cBack").build());
+            inv.setItem(5,new ItemBuilder(Material.WOOL,1,(short)5).setDiplayname("§aAccept").build());
+            inv.setItem(6,im);
+            inv.setItem(7,im);
+            inv.setItem(8,im);
+            p.openInventory(inv);
         }else{
             int kosten = Integer.parseInt(i.getItemMeta().getLore().get(0).replace("§6Kosten: ",""));
-            Inventory inv = p.getServer().createInventory(null, InventoryType.HOPPER,"Kosten für " + i.getType().name());
+            Inventory inv = p.getServer().createInventory(null, InventoryType.HOPPER,"§aKosten für " + i.getType().name());
             inv.setItem(0,new ItemBuilder(Material.STONE_BUTTON).setDiplayname("§c-1").build());
-            inv.setItem(2,new ItemBuilder(i.getType()).setDiplayname("§9Kosten: " + kosten).setLore(new String[]{loc,"§7" + itemSlot}).build());
+            inv.setItem(2,new ItemBuilder(i.getType()).setDiplayname("§9Kosten: " + kosten).setLore(new String[]{"§7" + itemSlot}).build());
             inv.setItem(4,new ItemBuilder(Material.STONE_BUTTON).setDiplayname("§a+1").build());
             p.openInventory(inv);
         }
     }
+    public static void onClickAddItemMenue(ItemStack i,Inventory inv,Player p){
+        if(i.getType().equals(Material.WOOL)) {
+            if(i.getData().getData() == 4) {
+                if ((inv.getItem(4) != null) || (!inv.getItem(4).getType().equals(Material.AIR))) {
+                    File file = new File("plugins//UserShop//" + getCfgStringAdmin.get(p.getName()) + ".yml");
+                    YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+                    //TODO in die cfg setzen
+                }
+            }else{
+                if ((inv.getItem(4) != null) || (!inv.getItem(4).getType().equals(Material.AIR))) {
+                    p.getInventory().addItem(inv.getItem(4));
+                }
+                p.getOpenInventory().close();
+            }
+        }
+    }
     public static void onClickKostenChangeInv(Inventory inv,ItemStack i,Player p){
         int kosten = Integer.parseInt(inv.getItem(2).getItemMeta().getDisplayName().replace("§9Kosten: ",""));
-        int itemSlot = Integer.parseInt(inv.getItem(2).getItemMeta().getLore().get(1).replace("§7",""));
-        File file = new File("plugins//UserShop//" + inv.getItem(2).getItemMeta().getLore().get(0).replace("§7","") + ".yml");
+        int itemSlot = Integer.parseInt(inv.getItem(2).getItemMeta().getLore().get(0).replace("§7",""));
+        File file = new File("plugins//UserShop//" + UserShop.getCfgStringAdmin.get(p.getName()) + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         if(i.getItemMeta().getDisplayName().equals("§c-1")){
             if(kosten==0){
@@ -363,12 +390,14 @@ public class UserShop {
     public static void openAdminMenue(Player p,String loc){
         File file = new File("plugins//UserShop//" + loc + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+        getCfgStringAdmin.put(p.getName(),loc);
 
-        Inventory inv = p.getServer().createInventory(null,27,"§aUserShop §7AdminMenü " + loc);
+        Inventory inv = p.getServer().createInventory(null,36,"§aUserShop §7AdminMenü");
         for(int i = 0;i<getContent(cfg).size();i++){
             inv.setItem(i,getContent(cfg).get(i));
         }
-        inv.setItem(26,new ItemBuilder(Material.BARRIER).setDiplayname("§cAdmin's").setLore(new String[]{"§7Klicke um jemanden rechte","§7für den Shop zu geben"}).build());
+        inv.setItem(35,new ItemBuilder(Material.BARRIER).setDiplayname("§cAdmin's").setLore(new String[]{"§7Klicke um jemanden rechte","§7für den Shop zu geben"}).build());
+        inv.setItem(34,new ItemBuilder(Material.FIRE).setDiplayname("§aNeues Item").setLore(new String[]{"§7Klicke um ein neues Item in","§7den Shop hinzuzufügen!"}).build());
         p.openInventory(inv);
     }
 }

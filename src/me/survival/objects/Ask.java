@@ -73,8 +73,8 @@ public class Ask {
 		ask.add(new Ask("level", "level", "Wie werde ich ein höheres Level!", "Du musst Exp bekommen, siehe /stats!"));
 		ask.add(new Ask("boost", "lange", "Wie lange hätl der EXP- Boost!", "Er dauert 90 minuten!"));
 		ask.add(new Ask("server", "restart", "Wie offt gibt es einen Server Restart!", "Ca. jede Woche"));
-		ask.add(new Ask("stunden", "stamm", "Wie viel Stunden braucht man um den Rang Stammspielr in Ts zu bekommen?", "10 Stunden."));
-		ask.add(new Ask("lange", "stamm", "Wie viel Stunden braucht man um den Rang Stammspielr in Ts zu bekommen?", "10 Stunden."));
+		ask.add(new Ask("stunden", "stamm", "Wie viel Stunden braucht man um den Rang Stammspielr in Ts zu bekommen?", "30 Stunden."));
+		ask.add(new Ask("lange", "stamm", "Wie viel Stunden braucht man um den Rang Stammspielr in Ts zu bekommen?", "30 Stunden."));
 		ask.add(new Ask("ballon", "wo", "Wie komme ich zum Ballon?", "Ein Ballon befindet sich ca. 40 Blöcke vom Spawn entfernt(neben Markt)"));
 		ask.add(new Ask("ballon", "komme", "Wie komme ich zum Ballon?", "Ein Ballon befindet sich ca. 40 Blöcke vom Spawn entfernt(neben Markt)"));
 	}

@@ -21,7 +21,7 @@ public class Listener_BlockBreakEvent implements Listener {
 		Player p = e.getPlayer();
 		String id = p.getUniqueId().toString();
 		
-		if(p.getName().equals("cevill33") || p.getName().equals("EndCrafter_LP") || p.getName().equals("DerLoooder")) {
+		if(p.getName().equals("cevill33") || p.getName().equals("EndCrafter_LP") || p.getName().equals("DerLoooder") || p.getName().equals("R2_D2_2002")) {
 			e.setCancelled(false);
 			return;
 		}

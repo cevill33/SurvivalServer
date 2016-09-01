@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import me.survival.api.UUIDConverter;
 import me.survival.api.UUIDFetcher;
 import me.vetoxapi.mongodb.DBVetoxPlayer;
 import org.bukkit.Bukkit;
@@ -105,7 +104,7 @@ public class Command_Gs implements CommandExecutor {
 				Location loc = p.getLocation();
 				Chunk c = loc.getChunk();
 				BetterChunk bC = BetterChunk.chunkworld.get(c.getWorld().getName() + ":" + c.getX() + ":" + c.getZ());
-				
+
 				if(bC != null) {
 					
 					p.sendMessage(Main.gsprefix + "§3Info:");
@@ -156,14 +155,23 @@ public class Command_Gs implements CommandExecutor {
 				}	
 
 				p.sendMessage(Main.gsprefix + "§3Deine Grundstücke:");
-				
-				for(String s : ChunkManager.getChunks(p.getUniqueId().toString())) {
+				List<String> chunks = ChunkManager.getChunks(p.getUniqueId().toString());//TODO testen!
+				if(chunks == null) {
+					p.sendMessage(Main.gsprefix + "§cError: §7Es gab einen Fehler beim auslesen deiner Grundstücke!");
+					return false;
+				}
+				for(int i = chunks.size();i<chunks.size();i++){
+					String[] array = chunks.get(i).split(":");
+					BetterChunk bC = BetterChunk.chunkworld.get(array[0] + ":" + array[1] + ":" + array[2]);
+					p.sendMessage("  §3X:§f " + bC.getX() * 16 + "§3|| Z: §f" + bC.getZ()*16 + "§3 || Welt: §f" + bC.getWorld());
+				}
+				/*for(String s : ChunkManager.getChunks(p.getUniqueId().toString())) {
 				
 					String[] array = s.split(":");
 					BetterChunk bC = BetterChunk.chunkworld.get(array[0] + ":" + array[1] + ":" + array[2]);
 					p.sendMessage("  §3X:§f " + bC.getX() * 16 + "§3|| Z: §f" + bC.getZ()*16 + "§3 || Welt: §f" + bC.getWorld());
 				
-				}		
+				}	*/
 			} else {
 				p.sendMessage(Main.gsprefix + "§cSyntax: §7/gs list!");
 					
@@ -189,6 +197,7 @@ public class Command_Gs implements CommandExecutor {
 				}
 
 				BetterChunk.chunkworld.remove(c.getWorld().getName() + ":" + c.getX() + ":" + c.getZ());
+
 				ChunkManager.deleteChunckFromFiles(bC);
 				p.sendMessage(Main.gsprefix + "§aDas Gs wurde gelöscht!");
 

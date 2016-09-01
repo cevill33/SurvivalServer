@@ -180,7 +180,14 @@ public class BetterEnchant {
 			p.sendMessage(prefix + "§cDu kannst Diamantsachen nicht verzaubern!");
 			return;
 		}
-		
+		if(forenchant.getAmount() != 1){
+			p.sendMessage(prefix + "§cDu kannst nur ein Item auf einmal Enchanten");
+			return;
+		}
+		if(forenchant.getType().equals(Material.BOOK)){
+			p.sendMessage(prefix + "§cBücher sind wegen buggs nicht enchantbar!");
+			return;
+		}
 		ItemMeta meta = forenchant.getItemMeta();
 		BetterEnchant be = BetterEnchant.getByEnchant(getEnchant(inv.getItem(7)));
 		

@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -40,28 +41,49 @@ public class Listener_InventoryClickEvent implements Listener {
 		Player p = (Player) e.getWhoClicked();
 		String name = e.getInventory().getName();
 		ItemStack current = e.getCurrentItem();
+		Inventory inv = e.getInventory();
 		if(current.getType() == Material.AIR) return;
 		//Zum Registrieren eines Inventars immer mit §a beginnen!
+
+		if(e.getInventory().getType().equals(InventoryType.ANVIL)){
+			if(inv.getItem(0)!=null && inv.getItem(0).getItemMeta().getDisplayName().equals("§6" + p.getName())) {
+				e.setCancelled(true);
+			}else if(inv.getItem(1)!=null && inv.getItem(1).getItemMeta().getDisplayName().equals("§6" + p.getName())) {
+				e.setCancelled(true);
+			}
+			return;
+		}
 
 		if(name.startsWith("§a")) {
 			//UserShop
 			if(name.startsWith("§aUserShop §7| §8")){
+				e.setCancelled(true);
 				String loc = name.replace("§aUserShop §7| §8","");
 				UserShop.onClickShop(p,loc,current);
 				return;
 			}
 			//User Shop Accept menue
 			if(name.startsWith("§aKaufen?")){
+				e.setCancelled(true);
 				UserShop.acceptitemslot.put(p.getName(),e.getSlot());
 				UserShop.onClickAcceptmenue(e.getInventory(),current,p);
 			}
 			//UserShop Admin Menue
 			if(name.startsWith("§aUserShop §7AdminMenü ")){
-				UserShop.onClickAdminMenue(p,current,name.replace("§aUserShop §7AdminMenü ",""),e.getSlot());
+				e.setCancelled(true);
+				UserShop.onClickAdminMenue(p,current,e.getSlot());
 			}
 			//UserShop preis
-			if(name.startsWith("Kosten für ")){
+			if(name.startsWith("§aKosten für ")){
+				e.setCancelled(true);
 				UserShop.onClickKostenChangeInv(e.getInventory(),current,p);
+			}
+			//Neues ShopItem
+			if(name.startsWith("§aNeues ShopItem")){
+				if(current.getType().equals(Material.BARRIER) || current.getType().equals(Material.WOOL)) {
+					e.setCancelled(true);
+				}
+				UserShop.onClickAddItemMenue(current,e.getInventory(),p);
 			}
 			//Bürgermeister
 			if(name.equals("§aDein König:")){
@@ -221,11 +243,11 @@ public class Listener_InventoryClickEvent implements Listener {
 
 			//Head
 			//TODO Wirft Fehler muss verbessert werden:
-			/*if(name.equals("§aHeads")){
+			if(name.equals("§aHeads")){
 				Command_Head.onKlick(p, current.getType());
 				e.setCancelled(true);
 				return;
-			}*/
+			}
 			
 			
 			return;

@@ -60,7 +60,6 @@ public class Listener_PlayerChatEvent implements Listener {
 			Ask questions = Ask.getAsk(tolowmsg);
 			p.sendMessage("§aFrage: §7" + questions.getQuestion());
 			p.sendMessage("§aAntwort: §f" + questions.getAnswer());
-
 			
 			p.sendMessage("");
 			ClickableChat.send(p, "§6[§7Ask§6] §7Wenn die Frage nicht dabei war klicke ", "§f§lHIER", "§7Drück drauf", "/askhextori " + msg);
@@ -92,14 +91,14 @@ public class Listener_PlayerChatEvent implements Listener {
 			return;
 			}
 
-			if(UserShop.editadmins.contains(p.getName()) && UserShop.editadmins2.get(p.getName())!=null){
+			if(UserShop.editadmins.contains(p.getName()) && UserShop.getCfgStringAdmin.get(p.getName())!=null){
+				String loc = UserShop.getCfgStringAdmin.get(p.getName());
 				if(!msg.equalsIgnoreCase("leave")) {
-					UserShop.addToAdmins(msg, UserShop.editadmins2.get(p.getName()));
+					UserShop.addToAdmins(msg, loc);
 					ActionBar.sendActionBar(p,"§7Du hast " + msg + " hinzugefügt!");
 				}
-				UserShop.openAdminMenue(p,UserShop.editadmins2.get(p.getName()));
+				UserShop.openAdminMenue(p,loc);
 				UserShop.editadmins.remove(p.getName());
-				UserShop.editadmins2.remove(p.getName());
 			}
 		}
 

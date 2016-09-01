@@ -13,6 +13,7 @@ public class Listener_WaterFlowEvent implements Listener{
     @EventHandler
     public void on2(BlockFromToEvent e) {
         if(e.getBlock().getWorld().getName().startsWith("Farmworld")) return;
+        if(e.getBlock().getChunk().equals(e.getToBlock().getChunk()))return;//NEU!
         e.setCancelled(true);
     }
 
